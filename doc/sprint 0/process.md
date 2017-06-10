@@ -18,6 +18,7 @@ Decisions on all aspects of development thus far (project idea, tools to be used
 User stories have been prioritized based on group consensus within the MoSCoW paradigm. Categorizations of each story fall into one of the following:
 * M(ust)
 * S(hould)
+* C(ould)
 * W(on't)
 
 Additionally, the group has elected to use pointerpoking.com as a tool to carry out scoring sessions.
