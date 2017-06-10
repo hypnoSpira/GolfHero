@@ -2,13 +2,13 @@
 
 ---
 
-#### Golf With Your Friends
-![alt text][friends]
+#### Total Pro Golf 3
+![alt text][ProGolf3]
 
-[Steam Link](http://store.steampowered.com/app/431240/Golf_With_Your_Friends/)
-This is a golf game you are able to play with your friends. It is real-time based.
+[Steam Link](http://store.steampowered.com/app/308320/Total_Pro_Golf_3/)
+Total Pro Golf 3 is a single player Golf simulator thats is played using a birds-eye view on a 2D course. The game is strickly single player.
 
-Our game will be turn-based, so it will require more strategy.
+Our game will incorporate multiplayer, that will allow you to play with friends and others. The UI will be more intuitive and take up less of the screen. 
 
 ---
 
@@ -23,5 +23,5 @@ Since our game is 3D, it will make it easier to plan shots. Kirby's Dream Course
 
 
 
-[friends]: http://cdn.akamai.steamstatic.com/steam/apps/431240/header.jpg?t=1496196133 "Golf With Your Friends Title"
+[ProGolf3]: http://cdn.akamai.steamstatic.com/steam/apps/308320/header.jpg?t=1447362369 "Total Pro Golf 3"
 [kirby]: https://upload.wikimedia.org/wikipedia/en/d/d8/Kirbydreamcourse.jpg "Kirby's Dream Course Cover"
