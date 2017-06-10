@@ -8,6 +8,8 @@
 > 
 > We used this [Planning Poker](https://www.pointingpoker.com/) tool to estimate our user story sizes.
 
+---
+
 ### Jimmy (The Math God)
 
 As a gamer, I want to have different movement options in order to give the game some depth.
@@ -84,6 +86,7 @@ Priority = M
 
 Size = 30
 
+---
 
 > We are focusing on user stories with priority M for Sprint 1 in order to create a proper first release
 > to show off the game mechanics.
