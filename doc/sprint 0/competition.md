@@ -6,9 +6,10 @@
 ![alt text][ProGolf3]
 
 [Steam Link](http://store.steampowered.com/app/308320/Total_Pro_Golf_3/)
-Total Pro Golf 3 is a single player Golf simulator thats is played using a birds-eye view on a 2D course. The game is strickly single player.
+Total Pro Golf 3 is a single player Golf simulator that’s is played using a birds-eye view on a 2D course. The game is strictly single player.
 
-Our game will incorporate multiplayer, that will allow you to play with friends and others. The UI will be more intuitive and take up less of the screen. 
+Our game is different in that it will incorporate multiplayer, allowing players to play with friends and others. The multiplayer will also feature an online chat allowing you to interact with the other players. The UI will be more intuitive and take up less of the screen. Total Pro Golf 3 targets a more niche player base; they focus more on the single player aspect along with aspects of living a life like a pro golf player would (entering tournaments and etc.). Our game has a more casual approach making it easy to pick up.
+
 
 ---
 
