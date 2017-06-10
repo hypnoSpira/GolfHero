@@ -3,9 +3,9 @@
 Everyone will be programming in C# within Unity. We have currently decided on tentative roles to be emphasized or added on to specific members:
 
 * Programming Lead: John Fraser
-John's prior experience with Unity makes him the best candidate for leading the structure and design of the program, especially for sprint 1.
+- John's prior experience with Unity makes him the best candidate for leading the structure and design of the program, especially for sprint 1.
 * Project Manager: Zixing Gong
-A designated project manager to handle course/project logistics and to communicate with the programmers to ensure deadlines are met would be beneficial.
+- A designated project manager to handle course/project logistics and to communicate with the programmers to ensure deadlines are met would be beneficial.
 
 Beyond sprint 1, roles will be re-evaluated and more specialized ones will be identified and created when appropriate. Group members have expressed interest in areas of model creation, level design, and multi-player networking.
 
