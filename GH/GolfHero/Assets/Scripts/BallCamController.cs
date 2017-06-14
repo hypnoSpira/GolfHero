@@ -14,14 +14,15 @@ public class BallCamController : MonoBehaviour {
     private Camera cam;
 
     private float currentDistance;
+    public float currentHeight;
     private float currentX;
     private float currentY;
     private float sensitivityX;
     private float sensitivityY;
     private float sensitivityZoom;
 
-	// Use this for initialization
-	private void Start () {
+    // Use this for initialization
+    private void Start () {
         currentDistance = 9.0f;
         currentX = 0.0f;
         currentY = 0.0f;
@@ -44,8 +45,9 @@ public class BallCamController : MonoBehaviour {
     // LateUpdate is called once per frame (
     void LateUpdate () {
         Vector3 direction = new Vector3(0, 0, -currentDistance);
+        Vector3 height = new Vector3(0, currentHeight, 0);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-        camTransform.position = target.position + (rotation * direction);
+        camTransform.position = target.position + height + (rotation * direction);
         camTransform.LookAt(target.position);
 	}
 }

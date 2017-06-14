@@ -483,6 +483,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 2118957472}
+  currentHeight: 1
 --- !u!1001 &1081548478
 Prefab:
   m_ObjectHideFlags: 0
