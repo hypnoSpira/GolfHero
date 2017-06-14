@@ -11,8 +11,6 @@ public class BallCamController : MonoBehaviour {
     public Transform target;
     private Transform camTransform;
 
-    private Camera cam;
-
     private float currentDistance;
     public float currentHeight;
     private float currentX;
@@ -30,20 +28,23 @@ public class BallCamController : MonoBehaviour {
         sensitivityY = 1.0f;
         sensitivityZoom = 3.0f;
         camTransform = transform;
-        cam = GetComponent<Camera>();
     }
 
+    // Update is called once per frame
     private void Update() {
+        // read inputs and update parameters of camera
         currentX += Input.GetAxis("Mouse X") * sensitivityX;
         currentY -= Input.GetAxis("Mouse Y") * sensitivityY;
         currentDistance -= Input.GetAxis("Mouse ScrollWheel") * sensitivityZoom;
 
+        // clamp values if under/over limits (don't want to zoom too far out or rotate camera through ground for example)
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
         currentDistance = Mathf.Clamp(currentDistance, DISTANCE_MIN, DISTANCE_MAX);
     }
 
-    // LateUpdate is called once per frame (
+    // LateUpdate is called once per frame (at the end of each frame)
     void LateUpdate () {
+        // Update camera position based on parameters
         Vector3 direction = new Vector3(0, 0, -currentDistance);
         Vector3 height = new Vector3(0, currentHeight, 0);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
