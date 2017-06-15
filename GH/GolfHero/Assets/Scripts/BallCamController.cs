@@ -26,7 +26,7 @@ public class BallCamController : MonoBehaviour {
         currentY = 0.0f;
         sensitivityX = 1.0f;
         sensitivityY = 1.0f;
-        sensitivityZoom = 3.0f;
+        sensitivityZoom = 6.0f;
         camTransform = transform;
     }
 
