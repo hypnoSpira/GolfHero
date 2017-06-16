@@ -9,7 +9,7 @@ public class WallHider : MonoBehaviour {
 	private float dist = 0.0f;
 	private RaycastHit hit;
 	private Collider target;
-	private bool touch;
+	private int invisibleCount;
 
 	// Use this for initialization
 	void Start () {
@@ -24,12 +24,12 @@ public class WallHider : MonoBehaviour {
 			Color color = target.GetComponent<Renderer> ().material.color;
 			color.a = 0.1f;
 			target.GetComponent<Renderer> ().material.color = color;
-			touch = true;
-		} else if (touch) {
+			invisibleCount++;
+		} else if (invisibleCount >  0) {
 			Color color = target.GetComponent<Renderer> ().material.color;
 			color.a = 1.0f;
 			target.GetComponent<Renderer> ().material.color = color;
-			touch = false;
+			invisibleCount--;
 		}
 	}
 }
