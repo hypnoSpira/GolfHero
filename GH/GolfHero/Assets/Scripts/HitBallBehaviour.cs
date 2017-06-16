@@ -11,7 +11,7 @@ public class HitBallBehaviour : MonoBehaviour {
 
     private Camera cam;
     private Rigidbody rb;
-    private float power = 30;
+    private float power = 40;
 	// Use this for initialization
 	void Start () {
         cam = Camera.main;
