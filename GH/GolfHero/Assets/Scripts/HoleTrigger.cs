@@ -11,9 +11,11 @@ public class HoleTrigger : MonoBehaviour {
 	}
 	void hitbottom(GameObject other){
 		//Implement whatever behavior we decide on, this is just temporary
-		Destroy(other.GetComponent<Collider>());//Fake the ball falling through this is a temp fix
+		//Destroy(other.GetComponent<Collider>());//Fake the ball falling through this is a temp fix
 
+        if (other.Equals(GameObject.Find("Ball"))) {
+            HitBallBehaviour.stopBall();
+            HitBallBehaviour.resetBall();
+        }
 	}
-	
-	
 }

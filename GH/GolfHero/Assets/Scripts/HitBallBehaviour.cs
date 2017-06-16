@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,17 +11,19 @@ public class HitBallBehaviour : MonoBehaviour {
     }
 
     private Camera cam;
-    private Rigidbody rb;
+    private static Rigidbody rb;
     private float power = 40;
+    public static Vector3 startPos;
+
 	// Use this for initialization
 	void Start () {
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
+        startPos = rb.transform.position;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-        
         if (rb.velocity == new Vector3(0, 0, 0) && Input.GetButton("Fire1")) {
             Vector3 force = cam.transform.forward;
             /*Possibly account for ball being on slope */
@@ -33,11 +36,26 @@ public class HitBallBehaviour : MonoBehaviour {
         }
 
         if (Input.GetKeyDown("s")) {
-            rb.velocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
+            stopBall();
         }
+
+        if (Input.GetKeyDown("r")) {
+            stopBall();
+            resetBall();
+        }
+
+        //Power meter stuff
         //while (Input.GetMouseButtonDown(0)) {
         //    Mathf.Sin(2);
         //}
-	}
+    }
+
+    public static void stopBall() {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+    public static void resetBall() {
+        rb.transform.position = startPos;
+    }
 }
