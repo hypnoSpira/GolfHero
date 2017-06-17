@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1089,7 +1089,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80828321abb3c214faa9a8b4cfc8e558, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hole: {fileID: 1701581805}
   defaultLayer: 0
   holeLayer: 8
 --- !u!23 &1700770262
@@ -1155,15 +1154,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4917605099474288, guid: adee30e45d20df44c86d75d4371ce794, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.46
+      value: 0.12
       objectReference: {fileID: 0}
     - target: {fileID: 4917605099474288, guid: adee30e45d20df44c86d75d4371ce794, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.45
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 4917605099474288, guid: adee30e45d20df44c86d75d4371ce794, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.27
+      value: -1.62
       objectReference: {fileID: 0}
     - target: {fileID: 4917605099474288, guid: adee30e45d20df44c86d75d4371ce794, type: 2}
       propertyPath: m_LocalRotation.x
