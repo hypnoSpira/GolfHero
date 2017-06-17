@@ -537,7 +537,6 @@ MonoBehaviour:
   xRayOpacity: 0.1
   collisionLayers:
   - Ground
-  - Default
   heightOffset: 1
 --- !u!114 &966272144
 MonoBehaviour:
