@@ -84,18 +84,15 @@
 - They should be able to face each other in a competitive match.
 - Priority: S
 - Size: 5
-
----
-##Pending Evaluation
 13. As an experienced player, I want to be able to adjust my third-person look sensitivity as well as adjust the default height the camera is relative to the ball so that I can control the camera to my personal preference.
 - Given that a player wants to tweak their camera sensitivity
 - When they open the options menu
 - They should be able to change their sensitivity
-- Priority: N/A
-- Size: N/A
+- Priority: C
+- Size: 1
 14. As a player I should have a variety of terrains to navigate  so that I may have complexity in the design of levels
 - Given that a player is playing the game
 - When they play on a level
 - There are interesting details and varying sets of terrain present
-- Priority: N/A
-- Size: N/A
+- Priority: S
+- Size: 3
