@@ -11,13 +11,17 @@ public class BallCamController : MonoBehaviour {
     // target transform that the camera is pointed at
     public Transform target;
 
-    // enables or disables see-through vision
-    public bool xRayVision;
+    // alpha for objects in the way (range: 0.0 to 1.0)
+    public float xRayOpacity;
 
+    // the camera will not be allowed to pass through objects
+    // belonging to any of these layers
+    public string[] collisionLayers;
+
+    private int layerMask;
     private List<Renderer> hiddenRends;
-
     private float currentDistance;
-    public float currentHeight;
+    public float heightOffset;
     private float currentX;
     private float currentY;
     private float sensitivityX;
@@ -26,13 +30,15 @@ public class BallCamController : MonoBehaviour {
 
     // Use this for initialization
     private void Start () {
-        currentDistance = 9.0f;
+        currentDistance = (DISTANCE_MAX - DISTANCE_MIN) /  2.0f;
         currentX = 0.0f;
         currentY = 0.0f;
         sensitivityX = 1.0f;
         sensitivityY = 1.0f;
         sensitivityZoom = 6.0f;
         hiddenRends = new List<Renderer>();
+        xRayOpacity = Mathf.Clamp(xRayOpacity, 0.0f, 1.0f);
+        layerMask = LayerMask.GetMask(collisionLayers);
     }
 
     // Update is called once per frame
@@ -42,7 +48,7 @@ public class BallCamController : MonoBehaviour {
         currentY -= Input.GetAxis("Mouse Y") * sensitivityY;
         currentDistance -= Input.GetAxis("Mouse ScrollWheel") * sensitivityZoom;
 
-        // clamp values if under/over limits (don't want to zoom too far out or rotate camera through ground for example)
+        // clamp values if under/over limits (don't want to zoom too far out or rotate camera too high/low)
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
         currentDistance = Mathf.Clamp(currentDistance, DISTANCE_MIN, DISTANCE_MAX);
     }
@@ -51,15 +57,16 @@ public class BallCamController : MonoBehaviour {
     private void LateUpdate () {
         // Update camera position based on parameters
         Vector3 direction = new Vector3(0, 0, -currentDistance);
-        Vector3 height = new Vector3(0, currentHeight, 0);
+        Vector3 height = new Vector3(0, heightOffset, 0);
         Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
         transform.position = target.position + height + (rotation * direction);
         transform.LookAt(target.position);
 
-        // update hidden objects if applicable
-        if (xRayVision) {
-            updateHiddenObjects();
-        }
+        // prevent camera going through specified object layers
+        Collide();
+
+        // update hidden objects
+        updateHiddenObjects();
 	}
 
     // Update hidden objects
@@ -95,6 +102,16 @@ public class BallCamController : MonoBehaviour {
 
         // book-keep hidden objects for next update
         hiddenRends = updatedRends;
+    }
+    
+    // disallow movement through specified object layers
+    private void Collide()
+    {
+        RaycastHit hit;
+        if (Physics.Linecast(target.position, transform.position, out hit, layerMask))
+        {
+            transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
+        }
     }
 
 }
