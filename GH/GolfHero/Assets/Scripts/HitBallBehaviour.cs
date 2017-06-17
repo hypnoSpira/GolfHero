@@ -37,6 +37,24 @@ public class HitBallBehaviour : MonoBehaviour {
             Debug.Log(force);
             rb.AddForce(force * power * power);
         }
+        if(Input.GetKeyDown(KeyCode.Alpha1)){
+            power = 10;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha2)){
+            power = 20;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha3)){
+            power = 30;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha4)){
+            power = 40;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha5)){
+            power = 50;
+        }
+        if(Input.GetKeyDown(KeyCode.Alpha6)){
+            power = 60;
+        }
 
         if (Input.GetKeyDown("s")) {
             stopBall();
