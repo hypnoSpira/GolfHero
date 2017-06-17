@@ -12,14 +12,17 @@ public class HitBallBehaviour : MonoBehaviour {
 
     private Camera cam;
     private static Rigidbody rb;
-    private float power = 40;
+	public float power;
     public static Vector3 startPos;
+	public GameObject arrow;
+	private Renderer[] arrowRend;
 
 	// Use this for initialization
 	void Start () {
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         startPos = rb.transform.position;
+		arrowRend = arrow.GetComponentsInChildren<Renderer> ();
 	}
 	
 	// Update is called once per frame
@@ -43,6 +46,18 @@ public class HitBallBehaviour : MonoBehaviour {
             stopBall();
             resetBall();
         }
+
+		// Hide arrow when ball is in motion
+		if (rb.velocity == Vector3.zero) {
+			foreach (Renderer rend in arrowRend) {
+				rend.enabled = true;
+			}
+
+		} else {
+			foreach (Renderer rend in arrowRend) {
+				rend.enabled = false;
+			}
+		}
 
         //Power meter stuff
         //while (Input.GetMouseButtonDown(0)) {
