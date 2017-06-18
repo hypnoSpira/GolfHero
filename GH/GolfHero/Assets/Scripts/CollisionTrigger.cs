@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoleTrigger2 : MonoBehaviour {
+public class CollisionTrigger : MonoBehaviour {
 
 	public int defaultLayer;
 	public int holeLayer;
