@@ -5,6 +5,7 @@
 ## Table of Contents
 
 [CRC Cards](#crc-cards)
+
 [Software Architecture Diagram](#software-architecture-diagram)
 
 ## CRC Cards
