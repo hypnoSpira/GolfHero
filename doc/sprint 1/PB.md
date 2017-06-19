@@ -75,13 +75,13 @@
 11. As a social person, I want to chat in-game, so that I can bond and build relationships while playing with my friends.
 - Given that a game is running and the players are a group of friends
 - When a player wants to communicate
-- Then they should have the option to communicate via text.
+- Then they should have the option to communicate via text
 - Priority: M
 - Size: 1
 12. As a competitive gamer, I want to be able to play against other players so that I can fulfill my competitive urges.
 - Given that Jimmy and someone else (ie. a friend) have the game
--  When they want to play together
-- They should be able to face each other in a competitive match.
+- When they want to play together
+- They should be able to face each other in a competitive match
 - Priority: S
 - Size: 5
 13. As an experienced player, I want to be able to adjust my third-person look sensitivity as well as adjust the default height the camera is relative to the ball so that I can control the camera to my personal preference.
@@ -95,4 +95,11 @@
 - When they play on a level
 - There are interesting details and varying sets of terrain present
 - Priority: S
+- Size: 3
+
+15. As a player, I want to be able to control the power of my hits so that I have more control over where my ball ends up.
+- Given the ball
+- When I hit it
+- I should be able to control the power I hit it with
+- Priority: M
 - Size: 3
