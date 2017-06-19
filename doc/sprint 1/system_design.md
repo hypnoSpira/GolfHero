@@ -1,14 +1,25 @@
-# System Design
+# Golf Hero: System Design
 
-## Cover Page
+Our software is being designed in Unity for Windows machines.
+It is programmed in C# and organized using the MVC model. For our first sprint, we are only focusing
+on the View and Control aspects of the design as shown below in our Software Architecture Diagram. The CRC
+Cards below also show the class names, the objects they are attached to, and their responsibilities.
 
-## Table of Contents
+---
+---
+---
+
+# Table of Contents
 
 [CRC Cards](#crc-cards)
 
 [Software Architecture Diagram](#software-architecture-diagram)
 
-## CRC Cards
+---
+---
+---
+
+# CRC Cards
 
 **Class Name:** ArrowController
 
@@ -23,7 +34,7 @@
 
 **Class Name:** BallCamController
 
-**Object:** BallCam
+**Object:** Camera
 
 **Responsibilities:**
 
@@ -36,7 +47,7 @@
 
 **Class Name:** CollisionTrigger
 
-**Object:** CollisionTrigger
+**Object:** Collision Trigger
 
 **Responsibilities:**
 
@@ -52,12 +63,14 @@
 
 * Apply a force to the ball with left mouse click
 * Adjust the power applied to the ball with the number keys (TEMPORARY)
+* Hide arrow while in motion
+* Only allow shooting when stopped
 
 ---
 
 **Class Name:** HoleTrigger
 
-**Object:** BallTrigger
+**Object:** Bottom Trigger
 
 **Responsibilities:**
 
@@ -66,13 +79,18 @@
 
 ---
 
-**Class Name:** HoleTrigger
+**Class Name:** MinimapIconBehaviour
 
-**Object:** BallTrigger
+**Object:** Ball Icon
 
 **Responsibilities:**
 
-* Detect when the ball is in the hole
-* Reset ball position (TEMPORARY)
+* Keep the 2D minimap in place
 
-## Software Architecture Diagram
+---
+---
+---
+
+# Software Architecture Diagram
+
+![alt text](http://i.imgur.com/N8ig6mY.png "Software Architecture Diagram")
