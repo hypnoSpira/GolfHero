@@ -5,9 +5,6 @@ It is programmed in C# and organized using the MVC model. For our first sprint, 
 on the View and Control aspects of the design as shown below in our Software Architecture Diagram. The CRC
 Cards below also show the class names and their responsibilities.
 
----
----
----
 
 # Table of Contents
 
@@ -15,9 +12,6 @@ Cards below also show the class names and their responsibilities.
 
 [Software Architecture Diagram](#software-architecture-diagram)
 
----
----
----
 
 # CRC Cards
 
@@ -75,25 +69,16 @@ Cards below also show the class names and their responsibilities.
 
 * Keep the 2D minimap in place
 
----
----
----
 
 # Software Architecture Diagram
 
-<<<<<<< HEAD
-![alt text](http://i.imgur.com/XOgFYjw.png "Software Architecture Diagram")
-=======
 ## Expected system(s)
 Our project is expected to run within a desktop environment (e.g. Windows), where the user is able to provide input using their keyboard and mouse and output is able to be sent and displayed on their screen(s) attached to their computer.
 
 
 ## Software Architecture Diagram
-[![Software Architecture Diagram](http://i.imgur.com/N8ig6mY.png)](http://i.imgur.com/N8ig6mY.png)
+[![Software Architecture Diagram](http://i.imgur.com/XOgFYjw.png)](http://i.imgur.com/XOgFYjw.png)
+
 
 ## Dealing with errors & exceptions
-TBA
-
-
-
->>>>>>> origin/master
+Unity's game engine will handle most errors/exceptions which occur during the run-time of the game. For user errors (e.g. User providing a display name which contains invalid characters), an in-game dialogue will appear informing the player of the error.
