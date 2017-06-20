@@ -8,9 +8,9 @@ Cards below also show the class names and their responsibilities.
 
 # Table of Contents
 
-[CRC Cards](#crc-cards)
+1. [CRC Cards](#crc-cards)
 
-[Software Architecture Diagram](#software-architecture-diagram)
+1. [Software Architecture Diagram](#software-architecture-diagram)
 
 
 # CRC Cards
@@ -73,12 +73,16 @@ Cards below also show the class names and their responsibilities.
 # Software Architecture Diagram
 
 ## Expected system(s)
-Our project is expected to run within a desktop environment (e.g. Windows), where the user is able to provide input using their keyboard and mouse and output is able to be sent and displayed on their screen(s) attached to their computer.
+* Our project is expected to run within a desktop environment (e.g. Windows), where the user is able to provide input using their keyboard and mouse and output is able to be sent and displayed on their screen(s) attached to their computer.
 
 
 ## Software Architecture Diagram
 [![Software Architecture Diagram](http://i.imgur.com/XOgFYjw.png)](http://i.imgur.com/XOgFYjw.png)
-
+* Using Unity, our project's architecture is made up of mostly components.
+* The view (which the player sees) is the current scene (menu, level, etc.) that they are on.
+* The model (which 'model' items found in golf - thank you Professor Dema for the clarification) are the game objects/prefabs. This includes (and is not limited to) the cameras objects, the player object, as well as the objects making up the level.
+* The controller are the scripts which are part of the game objects within the model.
 
 ## Dealing with errors & exceptions
-Unity's game engine will handle most errors/exceptions which occur during the run-time of the game. For user errors (e.g. User providing a display name which contains invalid characters), an in-game dialogue will appear informing the player of the error.
+* Unity's game engine will handle most errors/exceptions which occur during the run-time of the game. 
+* For user errors (e.g. User providing a display name which contains invalid characters), an in-game dialogue will appear informing the player of the error and how they should fix it.
