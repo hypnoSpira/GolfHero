@@ -11,9 +11,8 @@ Cards below also show the class names, the objects they are attached to, and the
 
 # Table of Contents
 
-[CRC Cards](#crc-cards)
-
-[Software Architecture Diagram](#software-architecture-diagram)
+1. [CRC Cards](#crc-cards)
+1. [Software Architecture Diagram](#software-architecture-diagram)
 
 ---
 ---
@@ -93,4 +92,15 @@ Cards below also show the class names, the objects they are attached to, and the
 
 # Software Architecture Diagram
 
-![alt text](http://i.imgur.com/N8ig6mY.png "Software Architecture Diagram")
+## Expected system(s)
+Our project is expected to run within a desktop environment (e.g. Windows), where the user is able to provide input using their keyboard and mouse and output is able to be sent and displayed on their screen(s) attached to their computer.
+
+
+## Software Architecture Diagram
+[![Software Architecture Diagram](http://i.imgur.com/N8ig6mY.png)](http://i.imgur.com/N8ig6mY.png)
+
+## Dealing with errors & exceptions
+TBA
+
+
+
