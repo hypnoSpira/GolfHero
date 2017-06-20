@@ -11,7 +11,9 @@ Cards below also show the class names and their responsibilities.
 1. [CRC Cards](#crc-cards)
 
 1. [Software Architecture Diagram](#software-architecture-diagram)
-
+    1. [Expected system(s)](#expected-systems)
+    1. [Software Architecture Diagram](#software-architecture-diagram-1)
+    1. [Dealing with errors & exceptions](#dealing-with-errors--exceptions)
 
 # CRC Cards
 
