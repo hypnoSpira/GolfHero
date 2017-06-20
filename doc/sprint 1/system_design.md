@@ -3,7 +3,7 @@
 Our software is being designed in Unity for Windows machines.
 It is programmed in C# and organized using the MVC model. For our first sprint, we are only focusing
 on the View and Control aspects of the design as shown below in our Software Architecture Diagram. The CRC
-Cards below also show the class names, the objects they are attached to, and their responsibilities.
+Cards below also show the class names and their responsibilities.
 
 ---
 ---
@@ -23,8 +23,6 @@ Cards below also show the class names, the objects they are attached to, and the
 
 **Class Name:** ArrowController
 
-**Object (this script is attached to):** Arrow
-
 **Responsibilities:**
 
 * Reflect direction camera is facing
@@ -33,8 +31,6 @@ Cards below also show the class names, the objects they are attached to, and the
 ---
 
 **Class Name:** BallCamController
-
-**Object:** Camera
 
 **Responsibilities:**
 
@@ -47,8 +43,6 @@ Cards below also show the class names, the objects they are attached to, and the
 
 **Class Name:** CollisionTrigger
 
-**Object:** Collision Trigger
-
 **Responsibilities:**
 
 * Change collision layer of ball to fall in the hole
@@ -56,8 +50,6 @@ Cards below also show the class names, the objects they are attached to, and the
 ---
 
 **Class Name:** HitBallBehaviour
-
-**Object:** Ball
 
 **Responsibilities:**
 
@@ -70,8 +62,6 @@ Cards below also show the class names, the objects they are attached to, and the
 
 **Class Name:** HoleTrigger
 
-**Object:** Bottom Trigger
-
 **Responsibilities:**
 
 * Detect when the ball is in the hole
@@ -80,8 +70,6 @@ Cards below also show the class names, the objects they are attached to, and the
 ---
 
 **Class Name:** MinimapIconBehaviour
-
-**Object:** Ball Icon
 
 **Responsibilities:**
 
@@ -93,4 +81,4 @@ Cards below also show the class names, the objects they are attached to, and the
 
 # Software Architecture Diagram
 
-![alt text](http://i.imgur.com/N8ig6mY.png "Software Architecture Diagram")
+![alt text](http://i.imgur.com/XOgFYjw.png "Software Architecture Diagram")
