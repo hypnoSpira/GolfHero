@@ -81,4 +81,19 @@ Cards below also show the class names and their responsibilities.
 
 # Software Architecture Diagram
 
+<<<<<<< HEAD
 ![alt text](http://i.imgur.com/XOgFYjw.png "Software Architecture Diagram")
+=======
+## Expected system(s)
+Our project is expected to run within a desktop environment (e.g. Windows), where the user is able to provide input using their keyboard and mouse and output is able to be sent and displayed on their screen(s) attached to their computer.
+
+
+## Software Architecture Diagram
+[![Software Architecture Diagram](http://i.imgur.com/N8ig6mY.png)](http://i.imgur.com/N8ig6mY.png)
+
+## Dealing with errors & exceptions
+TBA
+
+
+
+>>>>>>> origin/master
