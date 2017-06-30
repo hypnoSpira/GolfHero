@@ -55,6 +55,9 @@ public class BallCamController : MonoBehaviour {
 
     // LateUpdate is called once per frame (at the end of each frame)
     private void LateUpdate () {
+        if (target == null)
+            return;
+
         // Update camera position based on parameters
         Vector3 direction = new Vector3(0, 0, -currentDistance);
         Vector3 height = new Vector3(0, heightOffset, 0);

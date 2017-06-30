@@ -4,26 +4,61 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviour {
 
-	public Transform arrowTransform;
+    public GameObject arrow;
 	public Transform ballTransform;
-	private Transform camTransform;
 
+    private Transform arrowTransform;
+    private Renderer[] arrowRends;
 	private float camRotationY;
 
-	// Use this for initialization
-	void Start () {
-		camTransform = transform;
-		camRotationY = 0;
-	}
+    private bool visible;
+
+    // Use this for initialization
+    void Start () {
+		this.camRotationY = 0;
+        this.arrowTransform = this.arrow.transform;
+        this.arrowRends = this.arrow.GetComponentsInChildren<Renderer>();
+        this.visible = true;
+        //this.HideArrow();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		camRotationY = camTransform.eulerAngles.y;
+		this.camRotationY = this.transform.eulerAngles.y;
 	}
 
 	void LateUpdate () {
-		Vector3 offset = (arrowTransform.forward * -2);
-		arrowTransform.rotation = Quaternion.Euler (0, camRotationY - 180, 0);
-		arrowTransform.position = ballTransform.position + offset;
+        if (ballTransform != null)
+        {
+            Vector3 offset = (arrowTransform.forward * -2);
+            arrowTransform.rotation = Quaternion.Euler(0, camRotationY - 180, 0);
+            arrowTransform.position = ballTransform.position + offset;
+        }
 	}
+
+    public void ShowArrow()
+    {
+        if (visible)
+            return;
+
+        foreach (Renderer rend in this.arrowRends)
+        {
+            rend.enabled = true;
+        }
+
+        visible = true;
+    }
+
+    public void HideArrow()
+    {
+        if (!visible)
+            return;
+
+        foreach (Renderer rend in this.arrowRends)
+        {
+            rend.enabled = false;
+        }
+
+        visible = false;
+    }
 }
