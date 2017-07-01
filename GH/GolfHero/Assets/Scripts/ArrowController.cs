@@ -15,6 +15,8 @@ public class ArrowController : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        this.arrow = GameObject.Find("Arrow");
+        Debug.Log(this.arrow);
 		this.camRotationY = 0;
         this.arrowTransform = this.arrow.transform;
         this.arrowRends = this.arrow.GetComponentsInChildren<Renderer>();
