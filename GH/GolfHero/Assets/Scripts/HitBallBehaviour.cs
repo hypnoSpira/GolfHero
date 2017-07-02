@@ -27,6 +27,7 @@ public class HitBallBehaviour : MonoBehaviour {
     private int stage = 0;
     public int[] windSpd = { 0, 0, 0 };
     public Vector3 windDir;
+    private static bool pause = false;
     public bool calcWind = true;
     private Component windTxt;
 
@@ -44,8 +45,12 @@ public class HitBallBehaviour : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (pause) {
+            return;
+        }
+
         if (calcWind && rb.velocity == Vector3.zero) {
-            windDir = new Vector3(UnityEngine.Random.Range(-1, 1), 0, UnityEngine.Random.Range(-1, 1));
+            windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
             //((Text)windTxt).text = "Wind Speed: " + windSpd[2] +"\nWind Direction:" + windDir;
             WindText.setText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir);
@@ -106,6 +111,14 @@ public class HitBallBehaviour : MonoBehaviour {
 				rend.enabled = false;
 			}
 		}
+    }
+
+    public static void Pause() {
+        pause = true;
+    }
+
+    public static void Resume() {
+        pause = false;
     }
 
     public static void stopBall() {
