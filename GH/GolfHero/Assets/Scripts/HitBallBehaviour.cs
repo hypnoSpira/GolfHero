@@ -26,9 +26,9 @@ public class HitBallBehaviour : MonoBehaviour {
 	private Renderer[] arrowRend;
     private int stage = 0;
     public int[] windSpd = { 0, 0, 0 };
-    public Vector3 windDir;
+    public static Vector3 windDir;
     private static bool pause = false;
-    public bool calcWind = true;
+    public static bool calcWind = true;
     private Component windTxt;
 
     // Use this for initialization
