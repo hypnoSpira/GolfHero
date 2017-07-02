@@ -27,6 +27,7 @@ public class BallCamController : MonoBehaviour {
     private float sensitivityX;
     private float sensitivityY;
     private float sensitivityZoom;
+    private static bool pause = false;
 
     // Use this for initialization
     private void Start () {
@@ -43,6 +44,9 @@ public class BallCamController : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
+        if (pause) {
+            return;
+        }
         // read inputs and update parameters of camera
         currentX += Input.GetAxis("Mouse X") * sensitivityX;
         currentY -= Input.GetAxis("Mouse Y") * sensitivityY;
@@ -115,6 +119,13 @@ public class BallCamController : MonoBehaviour {
         {
             transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
         }
+    }
+
+    public static bool toggleEnable() {
+        //pause = !pause;
+        Debug.Log("Is camera enabled: " + pause);
+        //return pause;
+        return pause = !pause;
     }
 
 }
