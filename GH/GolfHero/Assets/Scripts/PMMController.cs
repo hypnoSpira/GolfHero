@@ -33,6 +33,7 @@ public class PMMController : MonoBehaviour
     {
         // scale Time by 0 (Time stops)
         Time.timeScale = 0;
+        HitBallBehaviour.Pause();
         showPauseMenu();
     }
 
@@ -41,6 +42,7 @@ public class PMMController : MonoBehaviour
     {
         // scale Time by 1 (Time flows as normal)
         Time.timeScale = 1;
+        HitBallBehaviour.Resume();
         hidePauseMenu();
     }
 
@@ -62,16 +64,26 @@ public class PMMController : MonoBehaviour
         GameObject.Find("TogglePause").GetComponentInChildren<Text>().text = "Pause";
     }
 
+    public void togglePause()
+    {
+        if (Time.timeScale == 1)
+        {
+            Pause();
+        }
+        else
+        {
+            Resume();
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("p")) {
-            Pause();
-            HitBallBehaviour.Pause();
-        } else if (Input.GetKeyDown("o")) {
-            Resume();
-            HitBallBehaviour.Resume();
-        } else if (Input.GetKeyDown("i")) {
+        if (Input.GetKeyDown("p"))
+        {
+            togglePause();
+        }
+        else if (Input.GetKeyDown("i")) {
             Reload();
         }
     }
