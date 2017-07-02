@@ -1290,8 +1290,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bc10bbc921950446876e5692025c52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultLayer: 0
-  holeLayer: 0
+  defaultLayer: 11
+  holeLayer: 8
 --- !u!136 &1414880219
 CapsuleCollider:
   m_ObjectHideFlags: 0
