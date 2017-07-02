@@ -42,16 +42,13 @@ public class PMMController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("p"))
-        {
+        if (Input.GetKeyDown("p")) {
             Pause();
-        }
-        else if (Input.GetKeyDown("o"))
-        {
+            HitBallBehaviour.Pause();
+        } else if (Input.GetKeyDown("o")) {
             Resume();
-        }
-        else if (Input.GetKeyDown("i"))
-        {
+            HitBallBehaviour.Resume();
+        } else if (Input.GetKeyDown("i")) {
             Reload();
         }
     }
