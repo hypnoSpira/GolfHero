@@ -6,7 +6,7 @@ Start time: 15:10
 
 End time: 15:45
 
-Total Duration: 30mins
+Total Duration: 35 mins
 
 Participants:
 
