@@ -34,7 +34,7 @@ public class BallCamController : MonoBehaviour
     private void Start()
     {
         currentDistance = (DISTANCE_MAX - DISTANCE_MIN) / 2.0f;
-        currentX = 0.0f;
+        currentX = 180.0f;
         currentY = 0.0f;
         sensitivityX = 1.0f;
         sensitivityY = 1.0f;
