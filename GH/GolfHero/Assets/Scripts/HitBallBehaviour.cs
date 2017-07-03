@@ -29,6 +29,7 @@ public class HitBallBehaviour : MonoBehaviour {
     public static Vector3 windDir;
     private static bool pause = false;
     public static bool calcWind = true;
+    private bool shoot = false;
     private Component windTxt;
 
     // Use this for initialization
@@ -57,20 +58,26 @@ public class HitBallBehaviour : MonoBehaviour {
             calcWind = false;
         }
 
-        if (cam.enabled && rb.velocity == Vector3.zero && Input.GetKeyUp("mouse 0")) {
-            cam.enabled = false;
+        if (!shoot && rb.velocity == Vector3.zero && Input.GetKeyUp("mouse 0")) {
+            //cam.enabled = false;
             force = cam.transform.forward;
-        } else if (!cam.enabled && Input.GetKeyUp("mouse 0")) {
+            shoot = true;
+            BallCamController.Disabled(true);
+        } else if (shoot && Input.GetKeyUp("mouse 0")) {
+            shoot = false;
+            BallCamController.Disabled(false);
             /*Possibly account for ball being on slope */
             //Vector3 planeNorm = rb.getPlane();
             Vector3 planeNorm = new Vector3(0, 1, 0); //Use the norm of the x,z plane
             force = Vector3.ProjectOnPlane(force, planeNorm).normalized; //Project onto a flat surface as we dont care about camera height
             Debug.Log(force);
             rb.AddForce(force * power * power + windDir * windSpd[2] * windSpd[2]);
-            cam.enabled = true;
+            //cam.enabled = true;
             calcWind = true;
-        } else if (Input.GetKeyUp("mouse 1")) {
-            cam.enabled = true;
+        } else if (!shoot && Input.GetKeyUp("mouse 1")) {
+            //cam.enabled = true;
+            shoot = false;
+            BallCamController.Disabled(false);
         }
 
         if (Input.GetKeyDown("s")) {
