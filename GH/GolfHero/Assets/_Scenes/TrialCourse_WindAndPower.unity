@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 449570278}
   - component: {fileID: 449570280}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Wind
   m_TagString: Wind Text
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
