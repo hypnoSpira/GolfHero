@@ -8,7 +8,14 @@ End time: 15:45
 
 Total Duration: 35 mins
 
-Participants:
+### Participants: 
+- John Fraser
+- Swarnajyoti Datta
+- Karen Ngo
+- Bryan Delgado-Bosso
+- Michael Chiu
+- Zixing Gong
+- Eugenia (Yujia) Zhang 
 
 ### Things we did good:
 
