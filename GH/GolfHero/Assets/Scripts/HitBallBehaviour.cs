@@ -74,7 +74,7 @@ public class HitBallBehaviour : MonoBehaviour {
             rb.AddForce(force * power * power + windDir * windSpd[2] * windSpd[2]);
             //cam.enabled = true;
             calcWind = true;
-        } else if (!shoot && Input.GetKeyUp("mouse 1")) {
+        } else if (shoot && Input.GetKeyUp("mouse 1")) {
             //cam.enabled = true;
             shoot = false;
             BallCamController.Disabled(false);
