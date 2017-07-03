@@ -19,18 +19,22 @@ public class HitBallBehaviour : MonoBehaviour {
     private Position curr;
     private Camera cam;
     private static Rigidbody rb;
-	public float power;
-    public static Vector3 startPos;
-    public Vector3 force;
+	private float power = 1f;
+    private float maxPower = 36f;
+    private bool increase = true;
+    private static Vector3 startPos;
+    private Vector3 force;
     public GameObject arrow;
 	private Renderer[] arrowRend;
     private int stage = 0;
-    public int[] windSpd = { 0, 0, 0 };
+    private int[] windSpd = { 0, 0, 0 };
     public static Vector3 windDir;
     private static bool pause = false;
-    public static bool calcWind = true;
+    private static bool calcWind = true;
     private bool shoot = false;
     private Component windTxt;
+    private float time;
+    private float wait = .08f;
 
     // Use this for initialization
     void Start () {
@@ -41,7 +45,7 @@ public class HitBallBehaviour : MonoBehaviour {
         curr = new Position(startPos, null);
         checkStage();
         Cursor.lockState = CursorLockMode.Locked;
-
+        time = wait;
     }
 
     // Update is called once per frame
@@ -54,12 +58,12 @@ public class HitBallBehaviour : MonoBehaviour {
             windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
             //((Text)windTxt).text = "Wind Speed: " + windSpd[2] +"\nWind Direction:" + windDir;
-            WindText.setText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir);
+            WindText.setText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
+                "\nPower: " + power + "\nMax Power: " + maxPower);
             calcWind = false;
         }
 
         if (!shoot && rb.velocity == Vector3.zero && Input.GetKeyUp("mouse 0")) {
-            //cam.enabled = false;
             force = cam.transform.forward;
             shoot = true;
             BallCamController.Disabled(true);
@@ -72,12 +76,12 @@ public class HitBallBehaviour : MonoBehaviour {
             force = Vector3.ProjectOnPlane(force, planeNorm).normalized; //Project onto a flat surface as we dont care about camera height
             Debug.Log(force);
             rb.AddForce(force * power * power + windDir * windSpd[2] * windSpd[2]);
-            //cam.enabled = true;
             calcWind = true;
+            power = 1f;
         } else if (shoot && Input.GetKeyUp("mouse 1")) {
-            //cam.enabled = true;
             shoot = false;
             BallCamController.Disabled(false);
+            power = 1f;
         }
 
         if (Input.GetKeyDown("s")) {
@@ -87,25 +91,6 @@ public class HitBallBehaviour : MonoBehaviour {
             stopBall();
             resetBall();
         }
-
-        /*if(Input.GetKeyDown(KeyCode.Alpha1)){
-            power = 10;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha2)){
-            power = 20;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha3)){
-            power = 30;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha4)){
-            power = 40;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha5)){
-            power = 50;
-        }
-        if(Input.GetKeyDown(KeyCode.Alpha6)){
-            power = 60;
-        }*/
 
         // Hide arrow when ball is in motion
         if (rb.velocity == Vector3.zero) {
@@ -118,6 +103,41 @@ public class HitBallBehaviour : MonoBehaviour {
 				rend.enabled = false;
 			}
 		}
+    }
+
+    private void FixedUpdate() {
+        if (shoot) {
+            if (increase) {
+                if (power > maxPower) {
+                    if (time >= 0) {
+                        power = maxPower;
+                        time -= Time.fixedUnscaledDeltaTime;
+                        return;
+                    }
+                    else {
+                        increase = false;
+                        time = wait;
+                        return;
+                    }
+                }
+                power += .67f;
+            } else {
+                if (power < 1f) {
+                    if (time >= 0) {
+                        power = 1f;
+                        time -= Time.fixedUnscaledDeltaTime;
+                        return;
+                    } else {
+                        increase = true;
+                        time = wait;
+                        return;
+                    }
+                }
+                power -= .67f;
+            }
+        }
+        WindText.setText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
+                "\nPower: " + power + "\nMax Power: " + maxPower);
     }
 
     public static void Pause() {

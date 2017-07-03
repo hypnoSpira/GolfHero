@@ -1684,7 +1684,7 @@ Prefab:
     - target: {fileID: 114549232327141226, guid: e53846654bfa32043bd0401d48dd5378,
         type: 2}
       propertyPath: power
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114549232327141226, guid: e53846654bfa32043bd0401d48dd5378,
         type: 2}
