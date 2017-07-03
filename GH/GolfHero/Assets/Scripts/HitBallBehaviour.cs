@@ -20,6 +20,7 @@ public class HitBallBehaviour : MonoBehaviour {
     private Camera cam;
     private static Rigidbody rb;
 	private float power = 1f;
+    private float jumpPower = 25f;
     private float maxPower = 36f;
     private bool increase = true;
     private static Vector3 startPos;
@@ -47,7 +48,20 @@ public class HitBallBehaviour : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         time = wait;
     }
-
+    public static void jump(float force){
+        rb.AddForce(Vector3.up * force);
+    }
+    public static void boostCurrentForce(float multiplier, float addition){
+        Vector3 normalizedVelocity = Vector3.Normalize(rb.velocity);//Get the current velocity
+        float prevMag = rb.velocity.magnitude;//Use for multiplier
+        Debug.Log("Entered a speed pad with force + " + rb.velocity.ToString() + "\n magnitude: " + prevMag.ToString());
+    
+            rb.AddForce(normalizedVelocity * (addition));//Perform addition first then multiply
+            Debug.Log("Adding force: " + (normalizedVelocity * (addition)).ToString());
+            rb.AddForce(normalizedVelocity * ((multiplier -1f) * prevMag));
+            Debug.Log("Adding force: " + (normalizedVelocity * (multiplier -1f) * prevMag).ToString());
+        }
+    
     // Update is called once per frame
     void Update() {
         if (pause) {
@@ -90,6 +104,9 @@ public class HitBallBehaviour : MonoBehaviour {
         if (Input.GetKeyDown("r")) {
             stopBall();
             resetBall();
+        }
+        if (Input.GetKeyDown("j")) {
+            jump(jumpPower*jumpPower);
         }
 
         // Hide arrow when ball is in motion
