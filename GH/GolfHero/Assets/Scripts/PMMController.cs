@@ -22,7 +22,6 @@ public class PMMController : MonoBehaviour
         // fix: http://answers.unity3d.com/questions/919940/applicationloadlevel-changes-lighting-for-some-rea.html
         // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
-        Pause();
         HitBallBehaviour.stopBall();
         HitBallBehaviour.resetBall();
         Resume();
