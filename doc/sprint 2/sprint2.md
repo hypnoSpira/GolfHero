@@ -67,10 +67,10 @@
   - Create speed pad prefab
   - Assign collider script that adds speed to entering balls
 
-- As a player, I would like to be able to set the sensitivity of the game camera's movement so that I can customize the rate I pan the camera during gameplay. [0]
+- As a player, I would like to be able to set the sensitivity of the game camera's movement so that I can customize the rate I pan the camera during gameplay. [6]
   - Add UI element to trigger change to game camera's movement sensitivity
 
-- As a player, I would like to be able to set the sensitivity of the game camera's zoom so that I can customize the rate I zoom during gameplay. [0]
+- As a player, I would like to be able to set the sensitivity of the game camera's zoom so that I can customize the rate I zoom during gameplay. [6]
   - Add UI element to trigger change to game camera's zoom sensitivity
   
   
