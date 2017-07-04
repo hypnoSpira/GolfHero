@@ -17,27 +17,26 @@ Total Duration: 35 mins
 - Zixing Gong
 - Eugenia (Yujia) Zhang 
 
-### Things we did good:
+### Things we did well:
 
   - Finished user stories in a timely manner
 
-  - Picked up on Unity fairly quickly
+  - Familiarized with Unity fairly quickly
 
-  - Clear instructions on task assignments
+  - Clearly divided tasks and responsibilities
 
 
-### Things we did not so good:
+### Things we did not so well:
 
-  - Organization of schdule was not as good as it should have been
+  - Organizing and planning meeting times
 
-  - Cover page was an .md file
+  - Missed the cover page of the System Design Document due to using a .md file
 
 
 ### Things we can improve on:
 
   - Getting in all the documentation earlier
 
-  - Keep meetings more relevant
+  - Keep meetings more relevant and on topic
 
-  - Put pivotal tracker number in commit message
-
+  - Putting the associated Pivotal Tracker story ID(s) in commit messages
