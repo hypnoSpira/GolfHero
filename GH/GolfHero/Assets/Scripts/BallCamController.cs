@@ -130,4 +130,15 @@ public class BallCamController : MonoBehaviour
     {
         pause = stop;
     }
+
+    public void SetMovSensitivity(float sensitivity)
+    {
+        sensitivityX = sensitivity;
+        sensitivityY = sensitivity;
+    }
+
+    public void SetZoomSensitivity(float zoom)
+    {
+        sensitivityZoom = zoom;
+    }
 }
