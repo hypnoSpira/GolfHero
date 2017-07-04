@@ -37,6 +37,6 @@ Total Duration: 35 mins
 
   - Getting in all the documentation earlier
 
-  - Keep meetings more relevant and on topic
+  - Keeping meetings more relevant and on topic
 
   - Putting the associated Pivotal Tracker story ID(s) in commit messages
