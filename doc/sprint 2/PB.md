@@ -149,17 +149,17 @@
 - Script object to turn
 - Priority: C
 - Size: 1
-25. As  player of games I want to have collectivles throughout the stage, so that I have a reward for going elaborate paths
+25. As a player of games I want to have collectivles throughout the stage, so that I have a reward for going elaborate paths
 - Create Coin model
 - Script collider to coins so that balls may collect coins
 - Priority: C
 - Size: 2
-26. As an golf player, I want there to be ale to traverse the course vertically, so that I can experience an extra dimension beyond regular golf
+26. As a golf player, I want there to be able to traverse the course vertically, so that I can experience an extra dimension beyond regular golf
 - Bounce pad model
 - Bounce pad scripting
 - Priority: C
 - Size: 1
-27. As an experienced player, I want there to be speed pads so that when I touch it I recieve a large boost of speed
+27. As an experienced player, I want there to be speed pads so that when the ball touches it, the ball recieve a large boost of speed
 - Create speed pad prefab
 - Assign collider script that adds speed to entering balls
 - Priority: C
