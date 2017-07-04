@@ -138,10 +138,9 @@
 - End goal added
 - Priority: M
 - Size: 1
-23. As a player, I want the to choose a set of maps and play through the maps in that set, so that i don't need to keep choosing maps after each game.
+23. As a player, I want to play a set of maps and play, so that I don't need to keep choosing maps after each game.
 - Transition from one stage to another
-- Have a set of maps to play
-- A notification that all maps in the set have been played through
+- Have more than one map to play.
 - Priority: S
 - Size: 1
 24. As a minigolf fan I expect to see a turning windmill, so I have an obstacle that I must time my shot to get by
