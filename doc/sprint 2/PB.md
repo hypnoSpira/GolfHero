@@ -149,12 +149,12 @@
 - Script object to turn
 - Priority: C
 - Size: 1
-25. As  player of games I want to have collectivles throughout the stage, so that I have a reward for going elaborate paths
+25. As a player of games I want to have collectivles throughout the stage, so that I have a reward for going elaborate paths
 - Create Coin model
 - Script collider to coins so that balls may collect coins
 - Priority: C
 - Size: 2
-26. As an golf player, I want there to be able to traverse the course vertically, so that I can experience an extra dimension beyond regular golf
+26. As a golf player, I want there to be able to traverse the course vertically, so that I can experience an extra dimension beyond regular golf
 - Bounce pad model
 - Bounce pad scripting
 - Priority: C
