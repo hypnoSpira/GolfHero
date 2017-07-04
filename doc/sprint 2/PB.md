@@ -164,3 +164,11 @@
 - Assign collider script that adds speed to entering balls
 - Priority: C
 - Size: 1
+28. As a player, I would like to be able to set the sensitivity of the game camera's movement so that I can customize the rate I pan the camera during gameplay. 
+- Add UI element to trigger change to game camera's movement sensitivity
+- Priority: C
+- Size: 0
+29. As a player, I would like to be able to set the sensitivity of the game camera's zoom so that I can customize the rate I zoom during gameplay. 
+- Add UI element to trigger change to game camera's zoom sensitivity
+- Priority: C
+- Size: 0
