@@ -105,7 +105,6 @@ public class HitBallBehaviour : MonoBehaviour {
             stopBall();
         }
         if (Input.GetKeyDown("r")) {
-            stopBall();
             resetBall();
         }
         if (Input.GetKeyDown("j")) {
@@ -175,6 +174,7 @@ public class HitBallBehaviour : MonoBehaviour {
     }
 
     public static void resetBall() {
+        stopBall();
         rb.transform.position = startPos;
     }
 

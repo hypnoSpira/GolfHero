@@ -24,7 +24,6 @@ public class PMMController : MonoBehaviour
 
         
         Resume();
-        HitBallBehaviour.stopBall();
         HitBallBehaviour.resetBall();
     }
 
