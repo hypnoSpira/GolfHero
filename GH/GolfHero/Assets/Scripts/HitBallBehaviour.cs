@@ -32,6 +32,7 @@ public class HitBallBehaviour : MonoBehaviour {
     private int[] windSpd = { 0, 0, 0 };
     public static Vector3 windDir;
     private static bool pause = false;
+    private static bool resume = false; // ignore click if just resuming
     private static bool calcWind = true;
     private bool shoot = false;
     private Component windTxt;
@@ -62,35 +63,11 @@ public class HitBallBehaviour : MonoBehaviour {
             rb.AddForce(normalizedVelocity * ((multiplier -1f) * prevMag));
             Debug.Log("Adding force: " + (normalizedVelocity * (multiplier -1f) * prevMag).ToString());
         }
-
-    // check if ignored items are clicked
-    private Boolean IgnoreItemClicked()
-    {
-        PointerEventData pointer = new PointerEventData(EventSystem.current);
-        pointer.position = Input.mousePosition;
-
-        List<RaycastResult> raycastResults = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(pointer, raycastResults);
-
-        // ignored items
-        HashSet<String> ignoreItems = new HashSet<String> { "TogglePause", "Text_TogglePause" };
-
-        if (raycastResults.Count > 0)
-        {
-            foreach (var go in raycastResults)
-            {
-                if (ignoreItems.Contains(go.gameObject.name))
-                {
-                    return true;
-                } 
-            }
-        }
-        return false;
-    }
     
     // Update is called once per frame
     void Update() {
-        if (pause || IgnoreItemClicked()) {
+        if (resume || pause) {
+            resume = false;
             return;
         }
 
@@ -188,6 +165,7 @@ public class HitBallBehaviour : MonoBehaviour {
     }
 
     public static void Resume() {
+        resume = true;
         pause = false;
     }
 
