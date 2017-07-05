@@ -42,6 +42,7 @@ public class HitBallBehaviour : MonoBehaviour {
     private float time;
     private float wait = .08f;
     private int shot = 0;
+    public bool incognitoMode = true;
 
     // Use this for initialization
     void Start () {
@@ -109,29 +110,34 @@ public class HitBallBehaviour : MonoBehaviour {
             power = 1f;
         }
 
-        if (Input.GetKeyDown("s")) {
-            stopBall();
-        } else if (Input.GetKeyDown("r")) {
-            resetBall();
-        } else if (Input.GetKeyDown("j")) {
-            jump(jumpPower*jumpPower);
-        } else if (Input.GetKeyDown("d")) {
-            if (curr.prev != null) {
+        if (!incognitoMode) {
+            if (Input.GetKeyDown("s")) {
                 stopBall();
-                rb.transform.position = curr.prev.pos;
-                curr = curr.prev;
-                shot--;
-                calcWind = true;
-                cheated = true;
             }
-        } else if (Input.GetKeyDown("f")) {
-            if (curr.next != null) {
-                stopBall();
-                rb.transform.position = curr.next.pos;
-                curr = curr.next;
-                shot++;
-                calcWind = true;
-                cheated = true;
+            else if (Input.GetKeyDown("r")) {
+                resetBall();
+            }
+            else if (Input.GetKeyDown("j")) {
+                jump(jumpPower * jumpPower);
+            }
+            else if (Input.GetKeyDown("d")) {
+                if (curr.prev != null) {
+                    stopBall();
+                    rb.transform.position = curr.prev.pos;
+                    curr = curr.prev;
+                    shot--;
+                    calcWind = true;
+                    cheated = true;
+                }
+            } else if (Input.GetKeyDown("f")) {
+                if (curr.next != null) {
+                    stopBall();
+                    rb.transform.position = curr.next.pos;
+                    curr = curr.next;
+                    shot++;
+                    calcWind = true;
+                    cheated = true;
+                }
             }
         }
 
