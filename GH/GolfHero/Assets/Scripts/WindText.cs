@@ -5,14 +5,17 @@ using UnityEngine.UI;
 
 public class WindText : MonoBehaviour {
 
-    private static Text txt;
+    private static GameObject[] windTexts;
 
-	// Use this for initialization
-	void Start () {
-        txt = GetComponent(typeof(Text)) as Text;
-	}
+    // Use this for initialization
+    void Start () {
+        windTexts = GameObject.FindGameObjectsWithTag("Wind Text");
+    }
 	
-    public static void setText(string windTxt) {
-        txt.text = windTxt;
+    public static void SetText(string windTxt) {
+        foreach (GameObject g in windTexts)
+        {
+            g.GetComponent<Text>().text = windTxt;
+        }
     }
 }

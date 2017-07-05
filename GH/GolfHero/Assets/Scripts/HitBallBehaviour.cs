@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class HitBallBehaviour : MonoBehaviour {
@@ -61,10 +62,35 @@ public class HitBallBehaviour : MonoBehaviour {
             rb.AddForce(normalizedVelocity * ((multiplier -1f) * prevMag));
             Debug.Log("Adding force: " + (normalizedVelocity * (multiplier -1f) * prevMag).ToString());
         }
+
+    // check if ignored items are clicked
+    private Boolean IgnoreItemClicked()
+    {
+        PointerEventData pointer = new PointerEventData(EventSystem.current);
+        pointer.position = Input.mousePosition;
+
+        List<RaycastResult> raycastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(pointer, raycastResults);
+
+        // ignored items
+        HashSet<String> ignoreItems = new HashSet<String> { "TogglePause", "Text_TogglePause" };
+
+        if (raycastResults.Count > 0)
+        {
+            foreach (var go in raycastResults)
+            {
+                if (ignoreItems.Contains(go.gameObject.name))
+                {
+                    return true;
+                } 
+            }
+        }
+        return false;
+    }
     
     // Update is called once per frame
     void Update() {
-        if (pause) {
+        if (pause || IgnoreItemClicked()) {
             return;
         }
 
@@ -72,7 +98,7 @@ public class HitBallBehaviour : MonoBehaviour {
             windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
             //((Text)windTxt).text = "Wind Speed: " + windSpd[2] +"\nWind Direction:" + windDir;
-            WindText.setText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
+            WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
                 "\nPower: " + power + "\nMax Power: " + maxPower);
             calcWind = false;
         }
@@ -153,7 +179,7 @@ public class HitBallBehaviour : MonoBehaviour {
                 power -= .67f;
             }
         }
-        WindText.setText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
+        WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
                 "\nPower: " + power + "\nMax Power: " + maxPower);
     }
 
