@@ -18,4 +18,12 @@ public class WindText : MonoBehaviour {
             g.GetComponent<Text>().text = windTxt;
         }
     }
+
+    public static void addText(string windTxt)
+    {
+        foreach (GameObject g in windTexts)
+        {
+            g.GetComponent<Text>().text += windTxt;
+        }
+    }
 }
