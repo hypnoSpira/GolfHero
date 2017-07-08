@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallCamController : MonoBehaviour {
+public class BallCamController : MonoBehaviour
+{
     private const float Y_ANGLE_MIN = -50.0f;
     private const float Y_ANGLE_MAX = 50.0f;
     private const float DISTANCE_MIN = 2f;
@@ -30,9 +31,10 @@ public class BallCamController : MonoBehaviour {
     private static bool pause = false;
 
     // Use this for initialization
-    private void Start () {
-        currentDistance = (DISTANCE_MAX - DISTANCE_MIN) /  2.0f;
-        currentX = 0.0f;
+    private void Start()
+    {
+        currentDistance = (DISTANCE_MAX - DISTANCE_MIN) / 2.0f;
+        currentX = 180.0f;
         currentY = 0.0f;
         sensitivityX = 1.0f;
         sensitivityY = 1.0f;
@@ -43,8 +45,10 @@ public class BallCamController : MonoBehaviour {
     }
 
     // Update is called once per frame
-    private void Update() {
-        if (pause) {
+    private void Update()
+    {
+        if (pause)
+        {
             return;
         }
         // read inputs and update parameters of camera
@@ -58,8 +62,9 @@ public class BallCamController : MonoBehaviour {
     }
 
     // LateUpdate is called once per frame (at the end of each frame)
-    private void LateUpdate () {
-        if (target == null)
+    private void LateUpdate()
+    {
+        if (target == null || pause)
             return;
 
         // Update camera position based on parameters
@@ -74,7 +79,7 @@ public class BallCamController : MonoBehaviour {
 
         // update hidden objects
         updateHiddenObjects();
-	}
+    }
 
     // Update hidden objects
     private void updateHiddenObjects()
@@ -110,7 +115,7 @@ public class BallCamController : MonoBehaviour {
         // book-keep hidden objects for next update
         hiddenRends = updatedRends;
     }
-    
+
     // disallow movement through specified object layers
     private void Collide()
     {
@@ -121,11 +126,19 @@ public class BallCamController : MonoBehaviour {
         }
     }
 
-    public static bool toggleEnable() {
-        //pause = !pause;
-        Debug.Log("Is camera enabled: " + pause);
-        //return pause;
-        return pause = !pause;
+    public static void Disabled(bool stop)
+    {
+        pause = stop;
     }
 
+    public void SetMovSensitivity(float sensitivity)
+    {
+        sensitivityX = sensitivity;
+        sensitivityY = sensitivity;
+    }
+
+    public void SetZoomSensitivity(float zoom)
+    {
+        sensitivityZoom = zoom;
+    }
 }

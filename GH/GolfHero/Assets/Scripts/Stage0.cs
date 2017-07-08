@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Stage0 : MonoBehaviour {
-    public static int windSpdMax = 5;
-    public static int windSpdMin = 20;
+    public static int windSpdMin = 1;
+    public static int windSpdMax = 8;
 }

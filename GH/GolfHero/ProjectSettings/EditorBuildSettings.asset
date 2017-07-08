@@ -5,6 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/_Scenes/TrialCourse_Multiplayer.unity
-    guid: 00000000000000000000000000000000
+    guid: a705b8184dd39a1468d7452799033cc1
+  - enabled: 1
+    path: Assets/_Scenes/MainGame_Level1.unity
+    guid: 3cccb4ed1fa94d94e919b149bd320669
+  - enabled: 1
+    path: Assets/_Scenes/MainGame_Level2.unity
+    guid: be015bd6a81b55147a90ff6460ce8958
