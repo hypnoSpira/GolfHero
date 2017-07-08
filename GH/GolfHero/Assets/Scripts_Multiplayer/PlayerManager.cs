@@ -117,8 +117,7 @@ public class PlayerManager : NetworkBehaviour {
     [Command]
     public void CmdResetBall()
     {
-        CmdStopBall();
-        ballBody.transform.position = Vector3.zero;
+        BallsManager.instance.ResetBall(ballBody);
     }
 
     // syncvar updates
@@ -139,6 +138,9 @@ public class PlayerManager : NetworkBehaviour {
                 this.cameraController.SetTarget(null);
             }
         }
+
+        if (isServer)
+            ball.GetComponent<BallManager>().setPlayerManager(this);
 
         if (ball != null)
             this.ballBody = ball.GetComponent<Rigidbody>();

@@ -47,6 +47,23 @@ public class BallsManager : NetworkBehaviour {
         return SpawnBall();
     }
 
+    public void ResetBall(Rigidbody ballBody)
+    {
+        ballBody.transform.position = spawnPoints[spawnCounter].position;
+        ballBody.transform.rotation = spawnPoints[spawnCounter].rotation;
+        ballBody.velocity = Vector3.zero;
+        ballBody.angularVelocity = Vector3.zero;
+        IncrementSpawnCounter();
+    }
+
+    public void ResetBalls()
+    {
+        foreach (GameObject ball in balls)
+        {
+            ResetBall(ball.GetComponent<Rigidbody>());
+        }
+    }
+
     // spawn and return a new ball
     private GameObject SpawnBall()
     {
@@ -58,18 +75,23 @@ public class BallsManager : NetworkBehaviour {
         var ball = (GameObject)Instantiate(ballPrefab, spawnPoints[spawnCounter].position, spawnPoints[spawnCounter].rotation);
         NetworkServer.Spawn(ball);
         balls.Add(ball);
-        spawnCounter = (spawnCounter + 1) % spawnPoints.Length;
+        IncrementSpawnCounter();
         return ball;
     }
 
-    private void FetchSpawns()
+    public void FetchSpawns()
     {
         GameObject[] spawns = GameObject.FindGameObjectsWithTag("Ball Spawn");
         spawnPoints = new Transform[spawns.Length];
 
         for (int i = 0; i< spawns.Length; i++)
         {
-            spawnPoints[i] = spawnPoints[i].transform;
+             spawnPoints[i] = spawns[i].transform;
         }
+    }
+
+    private void IncrementSpawnCounter()
+    {
+        spawnCounter = (spawnCounter + 1) % spawnPoints.Length;
     }
 }
