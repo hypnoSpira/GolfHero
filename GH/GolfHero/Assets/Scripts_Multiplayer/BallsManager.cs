@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class BallSpawner : NetworkBehaviour {
+public class BallsManager : NetworkBehaviour {
 
-    private int spawnCounter;
+    public static BallsManager instance = null;
 
     // prefab of ball to spawn
     public GameObject ballPrefab;
@@ -19,15 +19,27 @@ public class BallSpawner : NetworkBehaviour {
     // keeps track of all unassigned balls (not used atm)
     public Queue<GameObject> unassignedBalls;
 
+    private int spawnCounter;
+
+    public void Awake()
+    {
+        if (instance == null)
+            instance = this;
+
+        else if (instance != this)
+            Destroy(gameObject);
+    }
+
     // server start-up initialization
-	public override void OnStartServer () {
+    public override void OnStartServer () {
+
         spawnCounter = 0;
         balls = new List<GameObject>();
         unassignedBalls = new Queue<GameObject>();
 	}
 
     // get a ball from the unassigned set or spawn a new one if none exist
-    public GameObject getBall()
+    public GameObject GetBall()
     {
         if (unassignedBalls.Count > 0)
             return unassignedBalls.Dequeue();
@@ -38,10 +50,26 @@ public class BallSpawner : NetworkBehaviour {
     // spawn and return a new ball
     private GameObject SpawnBall()
     {
+        if (spawnPoints == null)
+        {
+            FetchSpawns();
+        }
+
         var ball = (GameObject)Instantiate(ballPrefab, spawnPoints[spawnCounter].position, spawnPoints[spawnCounter].rotation);
         NetworkServer.Spawn(ball);
         balls.Add(ball);
         spawnCounter = (spawnCounter + 1) % spawnPoints.Length;
         return ball;
+    }
+
+    private void FetchSpawns()
+    {
+        GameObject[] spawns = GameObject.FindGameObjectsWithTag("Ball Spawn");
+        spawnPoints = new Transform[spawns.Length];
+
+        for (int i = 0; i< spawns.Length; i++)
+        {
+            spawnPoints[i] = spawnPoints[i].transform;
+        }
     }
 }
