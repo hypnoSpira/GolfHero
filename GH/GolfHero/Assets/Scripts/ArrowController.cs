@@ -8,7 +8,7 @@ public class ArrowController : MonoBehaviour {
 	public Transform ballTransform;
 
     private Transform arrowTransform;
-    private Renderer[] arrowRends;
+    private Renderer arrowRends;
 	private float camRotationY;
 
     private bool visible;
@@ -18,7 +18,7 @@ public class ArrowController : MonoBehaviour {
         this.arrow = GameObject.Find("Arrow"); // init arrow var
 		this.camRotationY = 0;
         this.arrowTransform = this.arrow.transform;
-        this.arrowRends = this.arrow.GetComponentsInChildren<Renderer>();
+		this.arrowRends = this.arrow.GetComponent<Renderer> ();
         this.visible = true;
         //this.HideArrow();
     }
@@ -31,8 +31,8 @@ public class ArrowController : MonoBehaviour {
 	void LateUpdate () {
         if (ballTransform != null)
         {
-            Vector3 offset = (arrowTransform.forward * -2);
-            arrowTransform.rotation = Quaternion.Euler(0, camRotationY - 180, 0);
+			Vector3 offset = (arrowTransform.up * 3);
+            arrowTransform.rotation = Quaternion.Euler(90, camRotationY + 90, 90);
             arrowTransform.position = ballTransform.position + offset;
         }
 	}
@@ -42,10 +42,7 @@ public class ArrowController : MonoBehaviour {
         if (visible)
             return;
 
-        foreach (Renderer rend in this.arrowRends)
-        {
-            rend.enabled = true;
-        }
+		arrowRends.enabled = true;
 
         visible = true;
     }
@@ -55,10 +52,7 @@ public class ArrowController : MonoBehaviour {
         if (!visible)
             return;
 
-        foreach (Renderer rend in this.arrowRends)
-        {
-            rend.enabled = false;
-        }
+		arrowRends.enabled = false;
 
         visible = false;
     }

@@ -29,7 +29,7 @@ public class HitBallBehaviour : MonoBehaviour {
     private static Vector3 startPos;
     private Vector3 force;
     public GameObject arrow;
-	private Renderer[] arrowRend;
+	private Renderer arrowRend;
     private int stage = 0;
     private int[] windSpd = { 0, 0, 0 };
     public static Vector3 windDir;
@@ -43,17 +43,20 @@ public class HitBallBehaviour : MonoBehaviour {
     private float wait = .08f;
     private int shot = 0;
     public bool incognitoMode = true;
+	private int timer = 0;
+	private Color color;
 
     // Use this for initialization
     void Start () {
         cam = Camera.main;
         rb = GetComponent<Rigidbody>();
         startPos = rb.transform.position;
-		arrowRend = arrow.GetComponentsInChildren<Renderer> ();
+		arrowRend = arrow.GetComponent<Renderer> ();
         curr = new Position(startPos);
         checkStage();
         Cursor.lockState = CursorLockMode.Locked;
         time = wait;
+		Color color = arrowRend.material.color;
     }
 
     public static void jump(float force){
@@ -78,24 +81,27 @@ public class HitBallBehaviour : MonoBehaviour {
             return;
         }
 
-        if (rb.velocity.sqrMagnitude <= 0.025)
-            stopBall();
+//        if (rb.velocity.sqrMagnitude <= 0.025)
+//            stopBall();
 
-        if (calcWind && rb.velocity == Vector3.zero) {
+		if (calcWind && timer == 0) {
             windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
             //((Text)windTxt).text = "Wind Speed: " + windSpd[2] +"\nWind Direction:" + windDir;
             WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
-                "\nPower: " + power + "\nMax Power: " + maxPower + "\nCoins: " + CoinBehaviour.Collected);
+                "\nPower: " + power + "\nMax Power: " + maxPower + "\nCoins: " + CoinBehaviour.Collected +
+				"Cooldown: " + timer);
             calcWind = false;
             updatePos();
         }
-
-        if (!shoot && rb.velocity == Vector3.zero && Input.GetKeyUp("mouse 0")) {
+		color.r = 0.04f * power;
+		arrowRend.material.color = color;
+		if (!shoot && timer == 0 && Input.GetKeyUp("mouse 0")) {
             force = cam.transform.forward;
             shoot = true;
-            BallCamController.Disabled(true);
+			BallCamController.Disabled(false);
         } else if (shoot && Input.GetKeyUp("mouse 0")) {
+			timer = 5 * (int)power;
             shoot = false;
             BallCamController.Disabled(false);
             shot++;
@@ -112,6 +118,10 @@ public class HitBallBehaviour : MonoBehaviour {
             BallCamController.Disabled(false);
             power = 1f;
         }
+
+		if (timer != 0) {
+			timer -= 1;
+		}
 
         if (!incognitoMode) {
             if (Input.GetKeyDown("s")) {
@@ -145,15 +155,10 @@ public class HitBallBehaviour : MonoBehaviour {
         }
 
         // Hide arrow when ball is in motion
-        if (rb.velocity == Vector3.zero) {
-			foreach (Renderer rend in arrowRend) {
-				rend.enabled = true;
-			}
-
+		if (timer == 0) {
+			arrowRend.enabled = true;
 		} else {
-			foreach (Renderer rend in arrowRend) {
-				rend.enabled = false;
-			}
+			arrowRend.enabled = false;
 		}
     }
 
@@ -203,7 +208,8 @@ public class HitBallBehaviour : MonoBehaviour {
             }
         }
         WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
-                "\nPower: " + power + "\nMax Power: " + maxPower + "\nCoins: " + CoinBehaviour.Collected);
+                "\nPower: " + power + "\nMax Power: " + maxPower + "\nCoins: " + CoinBehaviour.Collected +
+				"\nCooldown: " + timer);
     }
 
     public static void Pause() {
