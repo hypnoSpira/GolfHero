@@ -78,6 +78,9 @@ public class HitBallBehaviour : MonoBehaviour {
             return;
         }
 
+        if (rb.velocity.sqrMagnitude <= 0.025)
+            stopBall();
+
         if (calcWind && rb.velocity == Vector3.zero) {
             windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
