@@ -9,6 +9,10 @@ public class PlayerManager : NetworkBehaviour {
     [SyncVar(hook = "OnChangeBall")]
     public GameObject ball;
 
+    // whether this player scored or not on current level
+    [SyncVar]
+    public bool scored;
+
     // true = this player can request shot inputs from the server
     [SyncVar(hook = "OnChangeActiveState")]
     public bool activeState;
@@ -17,10 +21,12 @@ public class PlayerManager : NetworkBehaviour {
     [SyncVar]
     public int strokes;
 
+    private bool shotLock;
+
     // reference to camera controller
     private CameraController cameraController;
 
-    //reference to ball's rigid body, auto-updated
+    //reference to ball's rigid body for detecting speed thresholds on server-side
     private Rigidbody ballBody;
 
 
@@ -36,22 +42,23 @@ public class PlayerManager : NetworkBehaviour {
 		if (isServer)
         {
             this.strokes = 0;
+            this.scored = false;
+            this.shotLock = false;
         }
 
         if (isClient)
             this.cameraController = Camera.main.GetComponent<CameraController>();
 
-        // set-up on the specific player's device
         if (isLocalPlayer)
             CmdGetBall();
     }
 	
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
         // server sets active state (whether the associated player can do anything), currently just allows movement if no already moving
         if (isServer && ballBody != null)
         {
-            if (ballBody.velocity == Vector3.zero)
+            if (ballBody.velocity.magnitude == 0)
             {
                 Activate();
             }
@@ -60,6 +67,8 @@ public class PlayerManager : NetworkBehaviour {
                 Deactivate();
             }
         }
+
+        shotLock = false;
     }
 
 
@@ -88,15 +97,18 @@ public class PlayerManager : NetworkBehaviour {
     [Command]
     public void CmdShootBall(Vector3 direction, float power)
     {
+        if (shotLock)
+            return;
+
+        shotLock = true;
         if (activeState == true)
         {
-            activeState = false;
-
             // adjust power limits
             power = Mathf.Clamp(power, 1.0f, 100.0f);
 
             ballBody.AddForce(direction * Mathf.Pow(power, 2.0f));
-            this.strokes++;
+            this.strokes = this.strokes + 1;
+
         }
     }
 
@@ -127,7 +139,7 @@ public class PlayerManager : NetworkBehaviour {
         if (isClient)
             this.ball = ball;
 
-        if (isLocalPlayer)
+        if (isLocalPlayer && cameraController != null)
         {
             if (ball != null)
             {
@@ -139,7 +151,7 @@ public class PlayerManager : NetworkBehaviour {
             }
         }
 
-        if (isServer)
+        if (isServer && (ball != null))
             ball.GetComponent<BallManager>().setPlayerManager(this);
 
         if (ball != null)
@@ -150,12 +162,11 @@ public class PlayerManager : NetworkBehaviour {
 
     public void OnChangeActiveState(bool activeState)
     {
-        if (isClient)
-            this.activeState = activeState;
+        this.activeState = activeState;
 
         if (isLocalPlayer && cameraController)
         {
-            if (activeState)
+            if (activeState && (ball != null))
             {
                 cameraController.SetTarget(ball.transform);
                 cameraController.ShowArrow();

@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
     private Transform target;
 
     // alpha for objects in the way (range: 0.0 to 1.0)
-    private float xRayOpacity;
+    public float xRayOpacity;
 
 
 

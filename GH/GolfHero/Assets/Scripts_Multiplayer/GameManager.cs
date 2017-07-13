@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class GameManager : NetworkManager {
+public class GameManager : NetworkLobbyManager {
+
+    public string[] levels;
+
+    // global game manager accessor
     public static GameManager instance = null;
-    public int defaultLayer;
 
-    private int level;
+    public int level;
 
-    void Awake()
+    private PlayerManager[] playerManagers;
+
+    private void Awake()
     {
         if (instance == null)
             instance = this;
@@ -18,38 +23,27 @@ public class GameManager : NetworkManager {
     }
 
     // Use this for initialization
-    void Start () {
+    private void Start () {
         level = 0;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
-    // ball fell into hole
-    public void ScoreBall(GameObject ball)
+    // for users to apply settings from their lobby player object to their in-game player object
+
+        /*
+    public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, GameObject gamePlayer)
     {
-        // TEST CODE
+        base.OnLobbyServerSceneLoadedForPlayer(lobbyPlayer, gamePlayer);
+        var cc = lobbyPlayer.GetComponent<ColorControl>();
+        var player = gamePlayer.GetComponent<Player>();
+        player.myColor = cc.myColor;
+        return true;
+    }
+    */
 
-        // currently just cycling right away when first ball enters
-
-
-        PlayerManager playerManager = ball.GetComponent<BallManager>().getPlayerManager();
-
-        // sometimes TriggerExit doesn't get called so we make sure layer info is correct for ball
-        ball.layer = defaultLayer;
-
-
-        if (level == 0)
-        {
-            LoadLevel1();
-        } else if (level == 1)
-        {
-            LoadLevel2();
-        }
-
-        playerManager.CmdResetBall();
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        base.OnClientDisconnect(conn);
+        RefreshPlayersList();
     }
 
     // when scene changes, fetch spawn points and setup all balls to those spawn points
@@ -57,27 +51,94 @@ public class GameManager : NetworkManager {
     {
         base.OnServerSceneChanged(sceneName);
 
-        // setup spawn points
-        BallsManager.instance.FetchSpawns();
+        for (int i = 0; i < levels.Length; i++)
+        {
+            if (sceneName == levels[i])
+            {
+                level = i + 1;
+                break;
+            }
+        }
 
-        // reset all balls
-        BallsManager.instance.ResetBalls();
+        // refresh spawn points
+        BallsManager.instance.UpdateSpawnPoints();
+
+        // RefreshPlayersList(true);
+
+        // refresh players list and assign new balls
+        //RefreshPlayersList(true);
     }
 
-    private void LoadLevel1()
+    public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        // change to level 1
-        ServerChangeScene("MainGame_Level1");
+        base.OnClientSceneChanged(conn);
 
-        level = 1;
+        if (networkSceneName != levels[0])
+        {
+            GameObject player = conn.playerControllers[0].gameObject;
+            PlayerManager playerManager = player.GetComponent<PlayerManager>();
+
+            if (playerManager != null)
+                playerManager.CmdGetBall();
+        }
+    }
+ 
+
+    // ball fell into hole
+    public void OnScoreBall(GameObject ball)
+    {
+        PlayerManager playerManager = ball.GetComponent<BallManager>().getPlayerManager();
+        playerManager.scored = true;
+
+        // destroy ball
+        NetworkServer.Destroy(ball);
+
+        // load next level if all players have scored
+        if (AllPlayersScored())
+        {
+            LoadLevel(level + 1);
+        }
     }
 
-    private void LoadLevel2()
+    // check if all players scored
+    private bool AllPlayersScored()
     {
-        // change to level 1
-        ServerChangeScene("MainGame_Level2");
+        RefreshPlayersList();
 
+        foreach (PlayerManager playerManager in playerManagers)
+            if (!playerManager.scored)
+                return false;
 
-        level = 2;
+        return true;
+    }
+
+    // refresh players list, optionally assign new balls/reset score bool
+    private void RefreshPlayersList(bool assignBalls = false)
+    {
+        // refresh players list and assign new balls
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        playerManagers = new PlayerManager[players.Length];
+        for (int i = 0; i < playerManagers.Length; i++)
+        {
+            playerManagers[i] = players[i].GetComponent<PlayerManager>();
+            if (assignBalls)
+            {
+                playerManagers[i].scored = false;
+                playerManagers[i].CmdGetBall();
+            }
+        }
+    }
+
+    private void LoadLevel(int levelNumber)
+    {
+        if (levelNumber > levels.Length)
+            EndMatch();
+        else if (levelNumber > 0)
+            ServerChangeScene(levels[levelNumber - 1]);
+    }
+
+    private void EndMatch()
+    {
+        Debug.Log("Match ended!");
     }
 }

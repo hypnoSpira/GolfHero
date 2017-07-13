@@ -4,12 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 public class BallManager : NetworkBehaviour {
-    private PlayerManager playerManager;
-
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
+    public PlayerManager playerManager;
 
     public void setPlayerManager(PlayerManager playerManager)
     {
