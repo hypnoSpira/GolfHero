@@ -11,20 +11,25 @@ public class BallsManager : NetworkBehaviour {
     public GameObject ballPrefab;
 
     // array of spawn points
-    public Transform[] spawnPoints;
+    private Transform[] spawnPoints;
+
+    private int spawnLevel;
 
     // keeps track of all balls in play
-    public List<GameObject> balls;
+    //private List<GameObject> balls;
 
     // keeps track of all unassigned balls (not used atm)
-    public Queue<GameObject> unassignedBalls;
+    //private Queue<GameObject> unassignedBalls;
 
     private int spawnCounter;
 
     public void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
 
         else if (instance != this)
             Destroy(gameObject);
@@ -32,18 +37,19 @@ public class BallsManager : NetworkBehaviour {
 
     // server start-up initialization
     public override void OnStartServer () {
-
         spawnCounter = 0;
-        balls = new List<GameObject>();
-        unassignedBalls = new Queue<GameObject>();
+        spawnLevel = 0;
+
+        //balls = new List<GameObject>();
+        //unassignedBalls = new Queue<GameObject>();
 	}
 
     // get a ball from the unassigned set or spawn a new one if none exist
     public GameObject GetBall()
     {
-        if (unassignedBalls.Count > 0)
-            return unassignedBalls.Dequeue();
-
+        //if (unassignedBalls.Count > 0)
+            //return unassignedBalls.Dequeue();
+       
         return SpawnBall();
     }
 
@@ -56,6 +62,7 @@ public class BallsManager : NetworkBehaviour {
         IncrementSpawnCounter();
     }
 
+    /*
     public void ResetBalls()
     {
         foreach (GameObject ball in balls)
@@ -63,23 +70,25 @@ public class BallsManager : NetworkBehaviour {
             ResetBall(ball.GetComponent<Rigidbody>());
         }
     }
+    */
 
     // spawn and return a new ball
     private GameObject SpawnBall()
     {
-        if (spawnPoints == null)
+        if (spawnPoints == null || spawnLevel != GameManager.instance.level)
         {
-            FetchSpawns();
+            UpdateSpawnPoints();
+            spawnLevel = GameManager.instance.level;
         }
 
         var ball = (GameObject)Instantiate(ballPrefab, spawnPoints[spawnCounter].position, spawnPoints[spawnCounter].rotation);
         NetworkServer.Spawn(ball);
-        balls.Add(ball);
+        //balls.Add(ball);
         IncrementSpawnCounter();
         return ball;
     }
 
-    public void FetchSpawns()
+    public void UpdateSpawnPoints()
     {
         GameObject[] spawns = GameObject.FindGameObjectsWithTag("Ball Spawn");
         spawnPoints = new Transform[spawns.Length];

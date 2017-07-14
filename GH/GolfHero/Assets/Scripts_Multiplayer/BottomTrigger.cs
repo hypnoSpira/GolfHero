@@ -17,9 +17,9 @@ public class BottomTrigger : NetworkBehaviour
         //Implement whatever behavior we decide on, this is just temporary
         //Destroy(other.GetComponent<Collider>());//Fake the ball falling through this is a temp fix
 
-        if (isServer && other.tag == "Player")
+        if (isServer && other.tag == "Ball")
         {
-            GameManager.instance.ScoreBall(other);
+            GameManager.instance.OnScoreBall(other);
         }
     }
 }

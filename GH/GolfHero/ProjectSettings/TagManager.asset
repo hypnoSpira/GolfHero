@@ -8,6 +8,7 @@ TagManager:
   - Wind Text
   - PMM_P
   - Ball Spawn
+  - Ball
   layers:
   - Default
   - TransparentFX
