@@ -94,7 +94,7 @@ public class HitBallBehaviour : MonoBehaviour {
             calcWind = false;
             updatePos();
         }
-		color.r = 0.04f * power;
+		color.r = power / maxPower;
 		arrowRend.material.color = color;
 		if (!shoot && timer == 0 && Input.GetKeyUp("mouse 0")) {
             force = cam.transform.forward;
