@@ -21,8 +21,6 @@ public class PlayerManager : NetworkBehaviour {
     [SyncVar]
     public int strokes;
 
-    private bool shotLock;
-
     // reference to camera controller
     private CameraController cameraController;
 
@@ -43,7 +41,6 @@ public class PlayerManager : NetworkBehaviour {
         {
             this.strokes = 0;
             this.scored = false;
-            this.shotLock = false;
         }
 
         if (isClient)
@@ -58,7 +55,7 @@ public class PlayerManager : NetworkBehaviour {
         // server sets active state (whether the associated player can do anything), currently just allows movement if no already moving
         if (isServer && ballBody != null)
         {
-            if (ballBody.velocity.magnitude == 0)
+            if (ballBody.velocity.magnitude < 0.5)
             {
                 Activate();
             }
@@ -68,7 +65,6 @@ public class PlayerManager : NetworkBehaviour {
             }
         }
 
-        shotLock = false;
     }
 
 
@@ -97,10 +93,7 @@ public class PlayerManager : NetworkBehaviour {
     [Command]
     public void CmdShootBall(Vector3 direction, float power)
     {
-        if (shotLock)
-            return;
 
-        shotLock = true;
         if (activeState == true)
         {
             // adjust power limits

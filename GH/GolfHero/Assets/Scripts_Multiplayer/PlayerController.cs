@@ -28,17 +28,11 @@ public class PlayerController : NetworkBehaviour {
 
     private void Update()
     {
-        shotLock = false;
-
         // owning player's inputs
         if (isLocalPlayer)
         {
             if (playerManager.activeState)
             {
-                if (shotLock == true)
-                    return;
-
-                shotLock = true;
                 if (Input.GetButton("Fire1"))
                 {
                     Vector3 rawDirection = Camera.main.transform.forward;

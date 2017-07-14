@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour
     public float sensitivityZoom;
 
     // target transform that the camera is pointed at
-    private Transform target;
+    public Transform target;
 
     // alpha for objects in the way (range: 0.0 to 1.0)
     public float xRayOpacity;

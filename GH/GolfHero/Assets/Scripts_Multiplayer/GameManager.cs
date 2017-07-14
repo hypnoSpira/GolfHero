@@ -7,6 +7,8 @@ public class GameManager : NetworkLobbyManager {
 
     public string[] levels;
 
+    public GameObject cameraPrefab;
+
     // global game manager accessor
     public static GameManager instance = null;
 
@@ -17,7 +19,10 @@ public class GameManager : NetworkLobbyManager {
     private void Awake()
     {
         if (instance == null)
+        {
             instance = this;
+            Instantiate(cameraPrefab);
+        }
         else if (instance != this)
             Destroy(gameObject);
     }

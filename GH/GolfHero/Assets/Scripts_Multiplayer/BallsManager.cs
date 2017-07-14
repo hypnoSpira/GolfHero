@@ -75,11 +75,15 @@ public class BallsManager : NetworkBehaviour {
     // spawn and return a new ball
     private GameObject SpawnBall()
     {
+        /*+
         if (spawnPoints == null || spawnLevel != GameManager.instance.level)
         {
             UpdateSpawnPoints();
             spawnLevel = GameManager.instance.level;
         }
+        */
+
+        UpdateSpawnPoints();
 
         var ball = (GameObject)Instantiate(ballPrefab, spawnPoints[spawnCounter].position, spawnPoints[spawnCounter].rotation);
         NetworkServer.Spawn(ball);
