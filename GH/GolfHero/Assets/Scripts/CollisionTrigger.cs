@@ -8,13 +8,13 @@ public class CollisionTrigger : MonoBehaviour {
 	public int holeLayer;
 
 	void OnTriggerEnter (Collider other) {
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Ball") {
 			other.gameObject.layer = holeLayer;
 		}
 	}
 
 	void OnTriggerExit (Collider other) {
-		if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "Ball") {
 			other.gameObject.layer = defaultLayer;
 		}
 	}
