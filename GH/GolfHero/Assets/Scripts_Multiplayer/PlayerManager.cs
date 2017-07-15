@@ -93,15 +93,10 @@ public class PlayerManager : NetworkBehaviour {
     [Command]
     public void CmdShootBall(Vector3 direction, float power)
     {
-
-        if (activeState == true)
+        if (activeState)
         {
-            // adjust power limits
-            power = Mathf.Clamp(power, 1.0f, 100.0f);
-
-            ballBody.AddForce(direction * Mathf.Pow(power, 2.0f));
+            ballBody.AddForce(direction * power * power + GameManager.getWind());
             this.strokes = this.strokes + 1;
-
         }
     }
 

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -6,11 +7,23 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour {
 
     private CameraController cameraController;
-    private float power;
 
     private PlayerManager playerManager;
 
     private bool shotLock;
+
+    private Vector3 direction;
+    private static float power = 1f;
+    private static float maxPower = 36f;
+    private bool increase = true;
+    private bool canShoot = false;
+    private float time;
+    private float wait = .08f;
+    private bool camLock = false;
+
+    public GameObject arrow;
+    private Renderer arrowRend;
+    private Color color;
 
     // Use this for initialization
     private void Start()
@@ -21,70 +34,94 @@ public class PlayerController : NetworkBehaviour {
         if (isLocalPlayer)
         {
             this.cameraController = Camera.main.GetComponent<CameraController>();
-            this.power = 20;
+            //Color color = arrowRend.material.color;
         }
 
     }
 
-    private void Update()
-    {
+    private void Update() {
         // owning player's inputs
-        if (isLocalPlayer)
-        {
-            if (playerManager.activeState)
-            {
-                if (Input.GetButton("Fire1"))
-                {
-                    Vector3 rawDirection = Camera.main.transform.forward;
+        if (isLocalPlayer) {
+            if (playerManager.activeState) {
+                color.r = 0.04f * power;
+                //arrowRend.material.color = color;
 
-                    // project force onto plane (WIP)
-                    Vector3 planeNorm = new Vector3(0, 1, 0); //Use the norm of the x,z plane
-                    Vector3 direction = Vector3.ProjectOnPlane(rawDirection, planeNorm).normalized;
-
-                    // Send a request to shoot a ball with the given direction and power
+                if (Input.GetKeyDown("mouse 0")) {
+                    canShoot = true;
+                    direction = Camera.main.transform.forward;
+                    Vector3 planeNorm = new Vector3(0, 1, 0);
+                    direction = Vector3.ProjectOnPlane(direction, planeNorm).normalized;
+                }
+                if (Input.GetKeyDown("mouse 1")) {
+                    canShoot = false;
+                    power = 1f;
+                }
+                if (canShoot && Input.GetKeyUp("mouse 0")) {
+                    canShoot = false;
                     playerManager.CmdShootBall(direction, power);
+                    power = 1f;
+                }
+
+                if (Input.GetKeyDown(KeyCode.Space)) {
+                    Debug.Log("Space");
+                    camLock = !camLock;
+                    BallCamController.Disabled(!camLock);
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                power = 10;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                power = 20;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                power = 30;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha4))
-            {
-                power = 40;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha5))
-            {
-                power = 50;
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha6))
-            {
-                power = 60;
-            }
-
-            if (Input.GetKeyDown("s"))
-            {
+            if (Input.GetKeyDown("s")) {
                 playerManager.CmdStopBall();
             }
 
-            if (Input.GetKeyDown("r"))
-            {
+            if (Input.GetKeyDown("r")) {
                 playerManager.CmdResetBall();
             }
+
+            /* Uncomment when arrow is added
+            if (canShoot) {
+                arrowRend.enabled = true;
+            } else {
+                arrowRend.enabled = false;
+            }*/
         }
+    }
+
+    private void FixedUpdate() {
+        if (isLocalPlayer) {
+            if (canShoot) {
+                if (increase) {
+                    if (power > maxPower) {
+                        if (time >= 0) {
+                            power = maxPower;
+                            time -= Time.fixedUnscaledDeltaTime;
+                            return;
+                        } else {
+                            increase = false;
+                            time = wait;
+                            return;
+                        }
+                    }
+                    power += .67f;
+                } else {
+                    if (power < 1f) {
+                        if (time >= 0) {
+                            power = 1f;
+                            time -= Time.fixedUnscaledDeltaTime;
+                            return;
+                        } else {
+                            increase = true;
+                            time = wait;
+                            return;
+                        }
+                    }
+                    power -= .67f;
+                }
+            }
+        }
+    }
+
+    // delete this and the part in GameManager when arrow is added
+    public static string powerText() {
+        return "\nCurrent Power: " + power + "\nMax Power: " + maxPower;
     }
 }
