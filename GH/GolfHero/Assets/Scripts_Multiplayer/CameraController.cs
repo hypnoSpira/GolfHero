@@ -65,13 +65,11 @@ public class CameraController : MonoBehaviour
         arrowVisible = false;
     }
 
-    public void SetArrowIntensity(float intensity)
+    public void SetArrowIntensity(Color color)
     {
         if (arrowRend)
         {
-            Color arrowColor = arrowRend.material.color;
-            arrowColor.r = 0.04f * intensity;
-            arrowRend.material.color = arrowColor;
+            arrowRend.material.color = color;
         }
     }
 

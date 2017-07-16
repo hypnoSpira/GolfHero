@@ -34,7 +34,6 @@ public class PlayerController : NetworkBehaviour {
         if (isLocalPlayer)
         {
             this.cameraController = Camera.main.GetComponent<CameraController>();
-            //Color color = arrowRend.material.color;
         }
 
     }
@@ -43,9 +42,9 @@ public class PlayerController : NetworkBehaviour {
         // owning player's inputs
         if (isLocalPlayer) {
             if (playerManager.activeState) {
-                color.r = 0.04f * power;
+                color.r = power/maxPower;
                 //arrowRend.material.color = color;
-                cameraController.SetArrowIntensity(power/maxPower);
+                cameraController.SetArrowIntensity(color);
 
                 if (Input.GetKeyDown("mouse 0")) {
                     canShoot = true;
@@ -77,13 +76,6 @@ public class PlayerController : NetworkBehaviour {
             if (Input.GetKeyDown("r")) {
                 playerManager.CmdResetBall();
             }
-
-            /* Uncomment when arrow is added
-            if (canShoot) {
-                arrowRend.enabled = true;
-            } else {
-                arrowRend.enabled = false;
-            }*/
         }
     }
 

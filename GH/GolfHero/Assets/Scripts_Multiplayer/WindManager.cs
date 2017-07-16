@@ -37,6 +37,8 @@ public class WindManager : NetworkBehaviour {
         {
             windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
+            WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir 
+                + "\nCoins: " + CoinBehaviour.Collected);
         }
     }
 
