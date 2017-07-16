@@ -119,9 +119,4 @@ public class PlayerController : NetworkBehaviour {
             }
         }
     }
-
-    // delete this and the part in GameManager when arrow is added
-    public static string powerText() {
-        return "\nCurrent Power: " + power + "\nMax Power: " + maxPower;
-    }
 }

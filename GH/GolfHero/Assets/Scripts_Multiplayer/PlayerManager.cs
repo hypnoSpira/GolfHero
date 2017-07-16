@@ -95,7 +95,9 @@ public class PlayerManager : NetworkBehaviour {
     {
         if (activeState)
         {
-            ballBody.AddForce(direction * power * power + GameManager.getWind());
+            power = Mathf.Clamp(power, 1.0f, 36.0f);
+
+            ballBody.AddForce(direction * power * power + WindManager.instance.getWind());
             this.strokes = this.strokes + 1;
         }
     }

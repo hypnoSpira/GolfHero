@@ -16,9 +16,6 @@ public class GameManager : NetworkLobbyManager {
 
     private PlayerManager[] playerManagers;
 
-    private static int[] windSpd = { 2, 12, 0 };
-    public static Vector3 windDir;
-
     private void Awake()
     {
         if (instance == null)
@@ -33,24 +30,25 @@ public class GameManager : NetworkLobbyManager {
     // Use this for initialization
     private void Start () {
         level = 0;
+        /*
         if (!UnityEngine.SceneManagement.SceneManager.GetActiveScene().name.Equals("Lobby")) {
             InvokeRepeating("UpdateWind", 0.1f, 20 / 3);
         }
-    }
-
-    private void UpdateWind() {
-        windDir = new Vector3(UnityEngine.Random.Range(-1f, 1.1f), 0, UnityEngine.Random.Range(-1f, 1.1f));
-        windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
+        */
     }
 
     private void Update() {
+        /*
         WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir +
             PlayerController.powerText() + "\nCoins: " + CoinBehaviour.Collected);
+        */
     }
 
+    /*
     public static Vector3 getWind() {
         return windDir * windSpd[2] * windSpd[2];
     }
+    */
 
     // for users to apply settings from their lobby player object to their in-game player object
 
