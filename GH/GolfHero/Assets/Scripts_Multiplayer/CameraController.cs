@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
 
     // arrow vars
     private Transform arrowTransform;
-    private Renderer[] arrowRends;
+    private Renderer arrowRend;
     private bool arrowVisible;
 
 
@@ -51,11 +51,8 @@ public class CameraController : MonoBehaviour
         if (arrowVisible)
             return;
 
-        foreach (Renderer rend in this.arrowRends)
-        {
-            rend.enabled = true;
-        }
-
+        arrowRend.enabled = true;
+  
         arrowVisible = true;
     }
 
@@ -64,11 +61,7 @@ public class CameraController : MonoBehaviour
         if (!arrowVisible)
             return;
 
-        foreach (Renderer rend in this.arrowRends)
-        {
-            rend.enabled = false;
-        }
-
+        arrowRend.enabled = false;
         arrowVisible = false;
     }
 
@@ -89,9 +82,9 @@ public class CameraController : MonoBehaviour
         layerMask = LayerMask.GetMask(collisionLayers);
 
         // arrow setup
-        GameObject arrow = GameObject.Find("Arrow"); // init arrow var
+        GameObject arrow = GameObject.FindGameObjectWithTag("Arrow"); // init arrow var
         this.arrowTransform = arrow.transform;
-        this.arrowRends = arrow.GetComponentsInChildren<Renderer>();
+        this.arrowRend = arrow.GetComponent<Renderer>();
         this.arrowVisible = false;
     }
 
@@ -138,8 +131,9 @@ public class CameraController : MonoBehaviour
 
         if (arrowVisible == false)
             return;
-        Vector3 offset = (arrowTransform.forward * -2);
-        arrowTransform.rotation = Quaternion.Euler(0, this.transform.eulerAngles.y - 180, 0);
+        Vector3 offset = (arrowTransform.up * 3);
+        Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
+        arrowTransform.rotation = Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.position = target.position + offset;
     }
 
