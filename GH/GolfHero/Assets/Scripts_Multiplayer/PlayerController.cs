@@ -45,6 +45,7 @@ public class PlayerController : NetworkBehaviour {
             if (playerManager.activeState) {
                 color.r = 0.04f * power;
                 //arrowRend.material.color = color;
+                cameraController.SetArrowIntensity(power/maxPower);
 
                 if (Input.GetKeyDown("mouse 0")) {
                     canShoot = true;
