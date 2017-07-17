@@ -8,7 +8,6 @@ public class WindManager : NetworkBehaviour {
     private int[] windSpd;
     public Vector3 windDir;
 	private GameObject warrow;
-	private GameObject cam;
 
     // Use this for initialization
     void Awake () {
@@ -26,16 +25,12 @@ public class WindManager : NetworkBehaviour {
     {
         windSpd = new int[] { 2, 12, 0 };
         InvokeRepeating("UpdateWind", 0.1f, 20 / 3);
-		warrow = GameObject.Find ("/Canvas/Wind_Arrow");
-		cam = GameObject.Find ("Camera");
-		Debug.Log (warrow.name);
-		Debug.Log (cam.name);
+		// Debug.Log (warrow.name);
     }
 
-	// Update is called once per frame
-	void Update () {
-
-	}
+	public void UpdateArrow() {
+        warrow = GameObject.Find("/Canvas/Wind_Arrow");
+    }
 
     private void UpdateWind()
     {

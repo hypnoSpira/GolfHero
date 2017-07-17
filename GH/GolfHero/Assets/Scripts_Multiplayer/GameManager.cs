@@ -85,6 +85,7 @@ public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, G
 
         // refresh spawn points
         BallsManager.instance.UpdateSpawnPoints();
+        WindManager.instance.UpdateArrow();
 
         // RefreshPlayersList(true);
 
