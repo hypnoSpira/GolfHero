@@ -139,7 +139,7 @@ public class CameraController : MonoBehaviour
 
         if (arrowVisible == false)
             return;
-        Vector3 offset = (arrowTransform.up * 3);
+        Vector3 offset = (arrowTransform.up * 2);
         Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.rotation = Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.position = target.position + offset;

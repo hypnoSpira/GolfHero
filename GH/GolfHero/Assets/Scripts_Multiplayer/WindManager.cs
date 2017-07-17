@@ -7,6 +7,8 @@ public class WindManager : NetworkBehaviour {
     public static WindManager instance = null;
     private int[] windSpd;
     public Vector3 windDir;
+	private GameObject warrow;
+	private GameObject cam;
 
     // Use this for initialization
     void Awake () {
@@ -24,6 +26,10 @@ public class WindManager : NetworkBehaviour {
     {
         windSpd = new int[] { 2, 12, 0 };
         InvokeRepeating("UpdateWind", 0.1f, 20 / 3);
+		warrow = GameObject.Find ("/Canvas/Wind_Arrow");
+		cam = GameObject.Find ("Camera");
+		Debug.Log (warrow.name);
+		Debug.Log (cam.name);
     }
 
 	// Update is called once per frame
@@ -39,6 +45,8 @@ public class WindManager : NetworkBehaviour {
             windSpd[2] = UnityEngine.Random.Range(windSpd[0], windSpd[1] + 1);
             WindText.SetText("Wind Speed: " + windSpd[2] + "km/h\nWind Direction: " + windDir 
                 + "\nCoins: " + CoinBehaviour.Collected);
+			warrow.transform.rotation = Quaternion.LookRotation 
+				(-Camera.main.transform.forward, Camera.main.transform.up);
         }
     }
 
