@@ -21,6 +21,7 @@ public class WindManager : NetworkBehaviour {
 
     private GameObject[] windTexts;
     private GameObject windArrow;
+	private Vector3 test = Vector3.zero;
 
     // Use this for initialization
     void Awake () {
@@ -98,7 +99,7 @@ public class WindManager : NetworkBehaviour {
         windArrow = GameObject.FindGameObjectWithTag("Wind Arrow");
         if (windArrow != null)
         {
-            windArrow.transform.rotation = Quaternion.LookRotation(-Camera.main.transform.forward, Camera.main.transform.up);
+			windArrow.transform.rotation = Quaternion.LookRotation(wind - Camera.main.transform.forward, Camera.main.transform.up);
         }
     }
 }

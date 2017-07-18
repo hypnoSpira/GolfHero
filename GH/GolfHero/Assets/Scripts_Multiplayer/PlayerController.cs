@@ -43,6 +43,8 @@ public class PlayerController : NetworkBehaviour {
         if (isLocalPlayer) {
             if (playerManager.activeState) {
                 color.r = power/maxPower;
+				color.g = power/maxPower;
+				color.b = power/maxPower;
                 //arrowRend.material.color = color;
                 cameraController.SetArrowIntensity(color);
 

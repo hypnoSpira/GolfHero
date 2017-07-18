@@ -1728,7 +1728,7 @@ GameObject:
   - component: {fileID: 505150662}
   m_Layer: 5
   m_Name: Wind_Arrow
-  m_TagString: Untagged
+  m_TagString: Wind Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1741,14 +1741,14 @@ RectTransform:
   m_GameObject: {fileID: 505150660}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.5}
   m_Children: []
   m_Father: {fileID: 1077367248}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 31.8, y: -43.96}
+  m_AnchoredPosition: {x: 52.1, y: -113.59}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &505150662
