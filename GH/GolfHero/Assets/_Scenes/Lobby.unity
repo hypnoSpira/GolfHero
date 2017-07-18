@@ -149,7 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79a08d236a7759342bf6bb1dfd34c198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windDir: {x: 0, y: 0, z: 0}
 --- !u!114 &126954947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +179,7 @@ MonoBehaviour:
     i13: 0
     i14: 0
     i15: 0
-  m_ServerOnly: 1
+  m_ServerOnly: 0
   m_LocalPlayerAuthority: 0
 --- !u!1001 &687281841
 Prefab:

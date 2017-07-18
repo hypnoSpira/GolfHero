@@ -8,6 +8,8 @@ public class PMMController : MonoBehaviour
 {
     GameObject[] showOnPause;
 
+    protected bool paused;
+
     // Use this for initialization
     void Start()
     {
@@ -30,18 +32,16 @@ public class PMMController : MonoBehaviour
     // Pauses Time
     public void Pause()
     {
-        // scale Time by 0 (Time stops)
-        Time.timeScale = 0;
-        HitBallBehaviour.Pause();
+        this.paused = true;
+        // HitBallBehaviour.Pause();
         showPauseMenu();
     }
 
     // Resumes Time
     public void Resume()
     {
-        // scale Time by 1 (Time flows as normal)
-        Time.timeScale = 1;
-        HitBallBehaviour.Resume();
+        this.paused = false;
+        // HitBallBehaviour.Resume();
         hidePauseMenu();
     }
 
@@ -65,7 +65,7 @@ public class PMMController : MonoBehaviour
 
     public void togglePause()
     {
-        if (Time.timeScale == 1)
+        if (!this.paused)
         {
             Pause();
         }

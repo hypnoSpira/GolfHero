@@ -9,6 +9,7 @@ TagManager:
   - PMM_P
   - Ball Spawn
   - Ball
+  - Wind Arrow
   layers:
   - Default
   - TransparentFX

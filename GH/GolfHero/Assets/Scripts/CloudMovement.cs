@@ -19,20 +19,21 @@ public class CloudMovement : MonoBehaviour {
 	void Start () {
 		rb = GetComponent<Rigidbody> ();
 		rend = GetComponent<Renderer> ();
-		winDir = new Vector3 (0, 0, 0);
+		winDir = new Vector3 (1, 0, 0);
 		windChk = winDir;
+		rb.AddForce (winDir * CLOUD_SPD);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		winDir = HitBallBehaviour.windDir;
-		// Check for change in winDir, apply force if true
-		if (windChk != winDir) {
-			rb.velocity = Vector3.zero;
-			rb.angularVelocity = Vector3.zero;
-			rb.AddForce (winDir * CLOUD_SPD);
-			windChk = winDir;
-		}
+//		winDir = HitBallBehaviour.windDir;
+//		// Check for change in winDir, apply force if true
+//		if (windChk != winDir) {
+//			rb.velocity = Vector3.zero;
+//			rb.angularVelocity = Vector3.zero;
+//			rb.AddForce (winDir * CLOUD_SPD);
+//			windChk = winDir;
+//		}
 
 		posX = transform.position.x;
 		posZ = transform.position.z;
