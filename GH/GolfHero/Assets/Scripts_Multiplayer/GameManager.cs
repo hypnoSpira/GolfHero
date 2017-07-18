@@ -16,6 +16,8 @@ public class GameManager : NetworkLobbyManager {
 
     private PlayerManager[] playerManagers;
 
+    private WindManager windManager;
+
     private void Awake()
     {
         if (instance == null)
@@ -85,7 +87,6 @@ public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, G
 
         // refresh spawn points
         BallsManager.instance.UpdateSpawnPoints();
-        WindManager.instance.UpdateArrow();
 
         // RefreshPlayersList(true);
 
@@ -163,6 +164,31 @@ public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, G
 
     private void EndMatch()
     {
+
+        RefreshPlayersList();
+ 
+        if (playerManagers.Length == 0)
+        {
+            Debug.Log("No players? Something is wrong!");
+            return;
+        }
+
+        int minStrokes = playerManagers[0].strokes;
+        foreach (PlayerManager player in playerManagers)
+        {
+            if (player.strokes < minStrokes)
+                minStrokes = player.strokes;
+        }
+
+        List<PlayerManager> winners = new List<PlayerManager>();
+        foreach (PlayerManager player in playerManagers)
+        {
+            if (player.strokes == minStrokes)
+                winners.Add(player);
+        }
+
         Debug.Log("Match ended!");
+
+        // winners contains winning players
     }
 }
