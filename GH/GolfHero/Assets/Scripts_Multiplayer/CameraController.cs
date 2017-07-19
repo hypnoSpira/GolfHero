@@ -190,9 +190,9 @@ public class CameraController : MonoBehaviour
 				this.transform.eulerAngles.y, 
 				this.transform.eulerAngles.z);
 			timerTransform.position = target.position + raise;
-			if (timer > 110) {
+			if (timer > 112) {
 				timerRend.sprite = sprites [2];
-			} else if (timer > 50) {
+			} else if (timer > 70) {
 				timerRend.sprite = sprites [1];
 			} else {
 				timerRend.sprite = sprites [0];

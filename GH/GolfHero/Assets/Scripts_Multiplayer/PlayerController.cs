@@ -25,10 +25,16 @@ public class PlayerController : NetworkBehaviour {
     private Renderer arrowRend;
     private Color color;
 
+	public AudioClip lowHit;
+	public AudioClip midHit;
+	public AudioClip hiHit;
+	private AudioSource source;
+
     // Use this for initialization
     private void Start()
     {
         playerManager = gameObject.GetComponent<PlayerManager>();
+		source = GetComponent<AudioSource> ();
 
         // set-up on the specific player's device
         if (isLocalPlayer)
@@ -68,6 +74,13 @@ public class PlayerController : NetworkBehaviour {
                 if (canShoot && Input.GetKeyUp("mouse 0")) {
                     canShoot = false;
                     playerManager.CmdShootBall(direction, power);
+					if (power > 30) {
+						source.PlayOneShot (hiHit);
+					} else if (power > 20) {
+						source.PlayOneShot (midHit);
+					} else {
+						source.PlayOneShot (lowHit);
+					}
 					timer = 5 * (int)power; 
                     power = 1f;
                 }
