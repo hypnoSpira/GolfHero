@@ -53,17 +53,17 @@ public class PlayerManager : NetworkBehaviour {
 	// Update is called once per frame
 	private void Update () {
         // server sets active state (whether the associated player can do anything), currently just allows movement if no already moving
-        if (isServer && ballBody != null)
-        {
-            if (ballBody.velocity.magnitude < 0.5)
-            {
-                Activate();
-            }
-            else
-            {
-                Deactivate();
-            }
-        }
+//        if (isServer && ballBody != null)
+//        {
+//            if (ballBody.velocity.magnitude < 0.5)
+//            {
+//                Activate();
+//            }
+//            else
+//            {
+//                Deactivate();
+//            }
+//        }
 
     }
 

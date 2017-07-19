@@ -40,6 +40,11 @@ public class CameraController : MonoBehaviour
     private bool arrowVisible;
     private bool arrowLock;
 
+	// timer vars
+	private Transform timerTransform;
+	private SpriteRenderer timerRend;
+	private Sprite[] sprites;
+
     public void SetTarget(Transform target)
     {
         this.target = target;
@@ -52,7 +57,7 @@ public class CameraController : MonoBehaviour
             return;
 
         arrowRend.enabled = true;
-  
+		timerRend.enabled = false;
         arrowVisible = true;
     }
 
@@ -62,6 +67,7 @@ public class CameraController : MonoBehaviour
             return;
 
         arrowRend.enabled = false;
+		timerRend.enabled = true;
         arrowVisible = false;
     }
 
@@ -105,6 +111,13 @@ public class CameraController : MonoBehaviour
         this.arrowRend = arrow.GetComponent<Renderer>();
         this.arrowVisible = false;
         this.arrowLock = false;
+
+		// timer setup
+		GameObject timer = GameObject.FindGameObjectWithTag ("Timer");
+		this.timerTransform = timer.transform;
+		this.timerRend = timer.GetComponent<SpriteRenderer> ();
+		sprites = Resources.LoadAll<Sprite> ("timer");
+		Debug.Log (sprites[0]);
     }
 
     // Update is called once per frame
@@ -146,12 +159,25 @@ public class CameraController : MonoBehaviour
         // update hidden objects
         updateHiddenObjects();
 
-        // arrow
-
-
-        if (!arrowVisible || arrowLock)
-            return;
-        Vector3 offset = (arrowTransform.up * 2);
+        // arrow and timer
+		Vector3 offset = (arrowTransform.up * 2);
+		int timer = PlayerController.timer;
+		if (!arrowVisible || arrowLock) {
+			Vector3 raise = new Vector3 (0, 0.85f, 0);
+			timerTransform.rotation = Quaternion.Euler (this.transform.eulerAngles.x, 
+				this.transform.eulerAngles.y, 
+				this.transform.eulerAngles.z);
+			timerTransform.position = target.position + raise;
+			if (timer > 110) {
+				timerRend.sprite = sprites [2];
+			} else if (timer > 50) {
+				timerRend.sprite = sprites [1];
+			} else {
+				timerRend.sprite = sprites [0];
+			}
+			arrowTransform.position = target.position + offset;
+			return;
+		}
         Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.rotation = Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.position = target.position + offset;

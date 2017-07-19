@@ -10,6 +10,7 @@ TagManager:
   - Ball Spawn
   - Ball
   - Wind Arrow
+  - Timer
   layers:
   - Default
   - TransparentFX

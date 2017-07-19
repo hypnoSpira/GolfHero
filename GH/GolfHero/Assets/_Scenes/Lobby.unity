@@ -350,6 +350,12 @@ Prefab:
       value: 
       objectReference: {fileID: 1113964352497720, guid: 438c9d359bb5da140a4a8127643689e4,
         type: 2}
+    - target: {fileID: 114499235285503836, guid: bc2900736af4263419774044e61a25b7,
+        type: 2}
+      propertyPath: timerPrefab
+      value: 
+      objectReference: {fileID: 1768907321752896, guid: 61730516492c0e34da87d2b94a8761db,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc2900736af4263419774044e61a25b7, type: 2}
   m_IsPrefabParent: 0
