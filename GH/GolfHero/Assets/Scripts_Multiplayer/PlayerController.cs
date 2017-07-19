@@ -81,6 +81,14 @@ public class PlayerController : NetworkBehaviour {
         }
     }
 
+    private void LateUpdate()
+    {
+        if (canShoot)
+            cameraController.LockArrow();
+        else
+            cameraController.UnlockArrow();
+    }
+
     private void FixedUpdate() {
         if (isLocalPlayer) {
             if (canShoot) {

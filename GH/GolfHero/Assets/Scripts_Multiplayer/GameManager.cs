@@ -8,6 +8,7 @@ public class GameManager : NetworkLobbyManager {
     public string[] levels;
 
     public GameObject cameraPrefab;
+    public GameObject arrowPrefab;
 
     // global game manager accessor
     public static GameManager instance = null;
@@ -23,6 +24,7 @@ public class GameManager : NetworkLobbyManager {
         if (instance == null)
         {
             instance = this;
+            Instantiate(arrowPrefab);
             Instantiate(cameraPrefab);
         }
         else if (instance != this)
@@ -156,6 +158,9 @@ public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, G
 
     private void LoadLevel(int levelNumber)
     {
+        foreach (PlayerManager playerManager in playerManagers)
+            playerManager.scored = false;
+        
         if (levelNumber > levels.Length)
             EndMatch();
         else if (levelNumber > 0)

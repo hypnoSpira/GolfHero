@@ -38,7 +38,7 @@ public class CameraController : MonoBehaviour
     private Transform arrowTransform;
     private Renderer arrowRend;
     private bool arrowVisible;
-
+    private bool arrowLock;
 
     public void SetTarget(Transform target)
     {
@@ -78,6 +78,16 @@ public class CameraController : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    public void LockArrow()
+    {
+        arrowLock = true;
+    }
+
+    public void UnlockArrow()
+    {
+        arrowLock = false;
+    }
+
     // Use this for initialization
     private void Start()
     {
@@ -94,6 +104,7 @@ public class CameraController : MonoBehaviour
         this.arrowTransform = arrow.transform;
         this.arrowRend = arrow.GetComponent<Renderer>();
         this.arrowVisible = false;
+        this.arrowLock = false;
     }
 
     // Update is called once per frame
@@ -137,12 +148,14 @@ public class CameraController : MonoBehaviour
 
         // arrow
 
-        if (arrowVisible == false)
+
+        if (!arrowVisible || arrowLock)
             return;
         Vector3 offset = (arrowTransform.up * 2);
         Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.rotation = Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.position = target.position + offset;
+
     }
 
     // Update hidden objects
