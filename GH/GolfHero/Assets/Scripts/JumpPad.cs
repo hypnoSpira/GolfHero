@@ -14,6 +14,7 @@ public class JumpPad : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Ball"){
 			ball = other.GetComponent<Rigidbody> ();
+			ball.AddForce(Vector3.up * magnitude * magnitude);
 		}
     }
 	// Update is called once per frame
