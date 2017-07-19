@@ -32,6 +32,8 @@ public class PMMController : MonoBehaviour
     // Pauses Time
     public void Pause()
     {
+        Cursor.lockState = CursorLockMode.None;
+        CameraController.instance.LockCamera();
         this.paused = true;
         // HitBallBehaviour.Pause();
         showPauseMenu();
@@ -40,6 +42,8 @@ public class PMMController : MonoBehaviour
     // Resumes Time
     public void Resume()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        CameraController.instance.UnlockCamera();
         this.paused = false;
         // HitBallBehaviour.Resume();
         hidePauseMenu();

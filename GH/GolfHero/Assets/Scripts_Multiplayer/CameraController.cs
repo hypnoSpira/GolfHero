@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance = null;
+
     private const float Y_ANGLE_MIN = -50.0f;
     private const float Y_ANGLE_MAX = 50.0f;
     private const float DISTANCE_MIN = 2f;
@@ -29,10 +31,10 @@ public class CameraController : MonoBehaviour
     private int layerMask;
     private List<Renderer> hiddenRends;
     private float currentDistance;
-    
+
+    public bool cameraLock;
     private float currentX;
     private float currentY;
-    private static bool pause = false;
 
     // arrow vars
     private Transform arrowTransform;
@@ -75,7 +77,13 @@ public class CameraController : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            instance = this;
+        }
+        else if (instance != this)
+            Destroy(gameObject);
     }
 
     public void LockArrow()
@@ -86,6 +94,16 @@ public class CameraController : MonoBehaviour
     public void UnlockArrow()
     {
         arrowLock = false;
+    }
+
+    public void LockCamera()
+    {
+        cameraLock = true;
+    }
+
+    public void UnlockCamera()
+    {
+        cameraLock = false;
     }
 
     // Use this for initialization
@@ -105,12 +123,13 @@ public class CameraController : MonoBehaviour
         this.arrowRend = arrow.GetComponent<Renderer>();
         this.arrowVisible = false;
         this.arrowLock = false;
+        this.cameraLock = false;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        if (pause)
+        if (cameraLock)
         {
             return;
         }
@@ -132,6 +151,9 @@ public class CameraController : MonoBehaviour
             HideArrow();
             return;
         }
+
+        if (cameraLock)
+            return;
 
         // Update camera position based on parameters
         Vector3 direction = new Vector3(0, 0, -currentDistance);
@@ -205,14 +227,6 @@ public class CameraController : MonoBehaviour
         {
             transform.position = new Vector3(hit.point.x, hit.point.y, hit.point.z);
         }
-    }
-
-    public static bool toggleEnable()
-    {
-        //pause = !pause;
-        Debug.Log("Is camera enabled: " + pause);
-        //return pause;
-        return pause = !pause;
     }
 
 }
