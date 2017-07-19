@@ -99,7 +99,9 @@ public class WindManager : NetworkBehaviour {
         windArrow = GameObject.FindGameObjectWithTag("Wind Arrow");
         if (windArrow != null)
         {
-			windArrow.transform.rotation = Quaternion.LookRotation(wind - Camera.main.transform.forward, Camera.main.transform.up);
+			Quaternion temp = windArrow.transform.rotation;
+			temp.z = wind.z;
+			windArrow.transform.rotation = temp;
         }
     }
 }

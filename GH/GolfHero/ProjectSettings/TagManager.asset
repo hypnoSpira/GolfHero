@@ -11,6 +11,7 @@ TagManager:
   - Ball
   - Wind Arrow
   - Timer
+  - Reference
   layers:
   - Default
   - TransparentFX
