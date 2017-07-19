@@ -81,7 +81,7 @@ public class PlayerController : NetworkBehaviour {
 					} else {
 						source.PlayOneShot (lowHit);
 					}
-					timer = 5 * (int)power; 
+					timer = 3 * (int)power; 
                     power = 1f;
                 }
 

@@ -9,9 +9,8 @@ public class BoundaryBehavior : MonoBehaviour {
 		
 	}
 	void OnTriggerExit(Collider other) {
-        if (other.gameObject.Equals(GameObject.Find("Ball"))){
-			HitBallBehaviour.resetBall();
-			Debug.Log("Ball has gone out of bounds");
+		if (other.tag == "Ball") {
+			other.GetComponent<BallManager> ().getPlayerManager ().CmdResetBall ();
 		}
     }
 	// Update is called once per frame
