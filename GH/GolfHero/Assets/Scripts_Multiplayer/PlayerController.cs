@@ -20,7 +20,6 @@ public class PlayerController : NetworkBehaviour {
     private bool canShoot = false;
     private float time;
     private float wait = .08f;
-    private bool camLock = false;
 
     public GameObject arrow;
     private Renderer arrowRend;
@@ -35,6 +34,8 @@ public class PlayerController : NetworkBehaviour {
         if (isLocalPlayer)
         {
             this.cameraController = Camera.main.GetComponent<CameraController>();
+            Cursor.lockState = CursorLockMode.Locked;
+            this.shotLock = false;
         }
 
     }
@@ -48,13 +49,12 @@ public class PlayerController : NetworkBehaviour {
 				playerManager.Deactivate ();
 				timer -= 1;
 			}
-            if (playerManager.activeState) {
+            if (playerManager.activeState && !shotLock) {
                 color.r = power/maxPower;
 				color.g = power/maxPower;
 				color.b = power/maxPower;
                 //arrowRend.material.color = color;
                 cameraController.SetArrowIntensity(color);
-
                 if (Input.GetKeyDown("mouse 0")) {
                     canShoot = true;
                     direction = Camera.main.transform.forward;
@@ -72,10 +72,13 @@ public class PlayerController : NetworkBehaviour {
                     power = 1f;
                 }
 
-                if (Input.GetKeyDown(KeyCode.Space)) {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
                     Debug.Log("Space");
-                    camLock = !camLock;
-                    BallCamController.Disabled(!camLock);
+                    if (Cursor.lockState == CursorLockMode.Locked)
+                        Cursor.lockState = CursorLockMode.None;
+                    else
+                        Cursor.lockState = CursorLockMode.Locked;
                 }
             }
 
@@ -95,6 +98,11 @@ public class PlayerController : NetworkBehaviour {
             cameraController.LockArrow();
         else
             cameraController.UnlockArrow();
+
+        if (CameraController.instance.cameraLock)
+            shotLock = true;
+        else
+            shotLock = false;
     }
 
     private void FixedUpdate() {
