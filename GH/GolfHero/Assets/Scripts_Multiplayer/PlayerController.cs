@@ -15,6 +15,7 @@ public class PlayerController : NetworkBehaviour {
     private Vector3 direction;
     private static float power = 1f;
     private static float maxPower = 36f;
+	public static int timer = 0;
     private bool increase = true;
     private bool canShoot = false;
     private float time;
@@ -42,33 +43,33 @@ public class PlayerController : NetworkBehaviour {
     private void Update() {
         // owning player's inputs
         if (isLocalPlayer) {
-            if (playerManager.activeState) {
+			if (timer == 0) {
+				playerManager.Activate ();
+			} else {
+				playerManager.Deactivate ();
+				timer -= 1;
+			}
+            if (playerManager.activeState && !shotLock) {
                 color.r = power/maxPower;
 				color.g = power/maxPower;
 				color.b = power/maxPower;
                 //arrowRend.material.color = color;
                 cameraController.SetArrowIntensity(color);
-
-                if (!shotLock)
-                {
-                    if (Input.GetKeyDown("mouse 0"))
-                    {
-                        canShoot = true;
-                        direction = Camera.main.transform.forward;
-                        Vector3 planeNorm = new Vector3(0, 1, 0);
-                        direction = Vector3.ProjectOnPlane(direction, planeNorm).normalized;
-                    }
-                    if (Input.GetKeyDown("mouse 1"))
-                    {
-                        canShoot = false;
-                        power = 1f;
-                    }
-                    if (canShoot && Input.GetKeyUp("mouse 0"))
-                    {
-                        canShoot = false;
-                        playerManager.CmdShootBall(direction, power);
-                        power = 1f;
-                    }
+                if (Input.GetKeyDown("mouse 0")) {
+                    canShoot = true;
+                    direction = Camera.main.transform.forward;
+                    Vector3 planeNorm = new Vector3(0, 1, 0);
+                    direction = Vector3.ProjectOnPlane(direction, planeNorm).normalized;
+                }
+                if (Input.GetKeyDown("mouse 1")) {
+                    canShoot = false;
+                    power = 1f;
+                }
+                if (canShoot && Input.GetKeyUp("mouse 0")) {
+                    canShoot = false;
+                    playerManager.CmdShootBall(direction, power);
+					timer = 5 * (int)power; 
+                    power = 1f;
                 }
 
                 if (Input.GetKeyDown(KeyCode.Space))
