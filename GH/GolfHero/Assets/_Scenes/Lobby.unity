@@ -275,7 +275,7 @@ Prefab:
     - target: {fileID: 114499235285503836, guid: bc2900736af4263419774044e61a25b7,
         type: 2}
       propertyPath: levels.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4323333772635214, guid: bc2900736af4263419774044e61a25b7, type: 2}
       propertyPath: m_LocalPosition.x
@@ -360,6 +360,11 @@ Prefab:
         type: 2}
       propertyPath: levels.Array.data[3]
       value: MainGame_Level4
+      objectReference: {fileID: 0}
+    - target: {fileID: 114499235285503836, guid: bc2900736af4263419774044e61a25b7,
+        type: 2}
+      propertyPath: levels.Array.data[4]
+      value: MainGame_Level5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc2900736af4263419774044e61a25b7, type: 2}
