@@ -9,7 +9,7 @@ public class GameManager : NetworkLobbyManager {
 
     public GameObject cameraPrefab;
     public GameObject arrowPrefab;
-	public GameObject timerPrefab;
+	//public GameObject timerPrefab;
 
     // global game manager accessor
     public static GameManager instance = null;
@@ -20,7 +20,7 @@ public class GameManager : NetworkLobbyManager {
 
     private WindManager windManager;
 
-	private GameObject timer;
+	//private GameObject timer;
 
     private void Awake()
     {
@@ -29,9 +29,9 @@ public class GameManager : NetworkLobbyManager {
             instance = this;
             Instantiate(arrowPrefab);
             Instantiate(cameraPrefab);
-			Instantiate(timerPrefab);
-			timer = GameObject.FindGameObjectWithTag ("Timer");
-			DontDestroyOnLoad (timer);
+			//Instantiate(timerPrefab);
+			//timer = GameObject.FindGameObjectWithTag ("Timer");
+			//DontDestroyOnLoad (timer);
         }
         else if (instance != this)
             Destroy(gameObject);

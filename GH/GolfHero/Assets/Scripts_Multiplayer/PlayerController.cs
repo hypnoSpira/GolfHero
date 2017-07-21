@@ -15,7 +15,7 @@ public class PlayerController : NetworkBehaviour {
     private Vector3 direction;
     private static float power = 1f;
     private static float maxPower = 36f;
-	public static int timer = 0;
+	//public static int timer = 0;
     private bool increase = true;
     private bool canShoot = false;
     private float time;
@@ -49,12 +49,15 @@ public class PlayerController : NetworkBehaviour {
     private void Update() {
         // owning player's inputs
         if (isLocalPlayer) {
-			if (timer == 0) {
-				playerManager.Activate ();
-			} else {
-				playerManager.Deactivate ();
-				timer -= 1;
-			}
+            //if (timer == 0)
+            //{
+            //    playerManager.Activate();
+            //}
+            //else
+            //{
+            //    playerManager.Deactivate();
+            //    timer -= 1;
+            //}
             if (playerManager.activeState && !shotLock) {
                 color.r = power/maxPower;
 				color.g = power/maxPower;
@@ -81,7 +84,7 @@ public class PlayerController : NetworkBehaviour {
 					} else {
 						source.PlayOneShot (lowHit);
 					}
-					timer = 3 * (int)power; 
+					//timer = 3 * (int)power; 
                     power = 1f;
                 }
 
@@ -107,6 +110,9 @@ public class PlayerController : NetworkBehaviour {
 
     private void LateUpdate()
     {
+        if (cameraController == null)
+            return;
+
         if (canShoot)
             cameraController.LockArrow();
         else

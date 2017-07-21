@@ -14,7 +14,7 @@ public class PlayerManager : NetworkBehaviour {
     public bool scored;
 
     // true = this player can request shot inputs from the server
-    [SyncVar(hook = "OnChangeActiveState")]
+    [SyncVar]
     public bool activeState;
 
     // # of strokes taken by this player
@@ -53,18 +53,32 @@ public class PlayerManager : NetworkBehaviour {
 	// Update is called once per frame
 	private void Update () {
         // server sets active state (whether the associated player can do anything), currently just allows movement if no already moving
-//        if (isServer && ballBody != null)
-//        {
-//            if (ballBody.velocity.magnitude < 0.5)
-//            {
-//                Activate();
-//            }
-//            else
-//            {
-//                Deactivate();
-//            }
-//        }
+        if (isServer && ballBody != null)
+        {
+            if (ballBody.velocity.magnitude < 0.5)
+            {
+                Activate();
+            }
+            else
+            {
+                Deactivate();
+            }
+        }
 
+    }
+
+    private void LateUpdate()
+    {
+        if (isLocalPlayer)
+        {
+            if (cameraController && activeState && (ball != null))
+            {
+                cameraController.SetTarget(ball.transform);
+                cameraController.ShowArrow();
+            }
+            else
+                cameraController.HideArrow();
+        }
     }
 
 
@@ -148,21 +162,5 @@ public class PlayerManager : NetworkBehaviour {
             this.ballBody = ball.GetComponent<Rigidbody>();
         else
             this.ballBody = null;
-    }
-
-    public void OnChangeActiveState(bool activeState)
-    {
-        this.activeState = activeState;
-
-        if (isLocalPlayer && cameraController)
-        {
-            if (activeState && (ball != null))
-            {
-                cameraController.SetTarget(ball.transform);
-                cameraController.ShowArrow();
-            }
-            else
-                cameraController.HideArrow();
-        }
     }
 }
