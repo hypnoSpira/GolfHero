@@ -184,7 +184,7 @@ public class CameraController : MonoBehaviour
         // arrow and timer
 		//Vector3 offset = (arrowTransform.up * 2);
 		//int timer = PlayerController.timer;
-		if (!arrowVisible || arrowLock) {
+		if (!arrowVisible) {
 			//Vector3 raise = new Vector3 (0, 0.85f, 0);
 			//timerTransform.rotation = Quaternion.Euler (this.transform.eulerAngles.x, 
 			//	this.transform.eulerAngles.y, 
@@ -202,9 +202,11 @@ public class CameraController : MonoBehaviour
 			return;
 		}
         Vector3 offset = (arrowTransform.up * 2);
+        arrowTransform.position = target.position + offset;
+        if (arrowLock)
+            return;
         Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
         arrowTransform.rotation = Quaternion.Euler(90, this.transform.eulerAngles.y + 90, 90);
-        arrowTransform.position = target.position + offset;
 
     }
 
