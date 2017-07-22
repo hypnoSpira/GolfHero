@@ -5,7 +5,7 @@ using UnityEngine;
 /*
  Source from Unity:
  https://bitbucket.org/Unity-Technologies/networking/src/0994e9af557d4f8d09d22b4e804efe8c91426882/Runtime/NetworkManagerHUD.cs
-     */
+*/
 
 // #if ENABLE_UNET
 using UnityEngine.Networking;
@@ -73,6 +73,18 @@ public class NetworkManagerHUD_Custom : MonoBehaviour
     public void ManagerStartHost()
     {
         manager.StartHost();
+    }
+
+    public void ManagerStartMM()
+    {
+        manager.StartMatchMaker();
+        // show MMOff button
+    }
+
+    public void ManagerStopMM()
+    {
+        manager.StopMatchMaker();
+        // show MMOn
     }
 
     void OnGUI()
