@@ -82,12 +82,14 @@ public class PMMController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("p"))
+        if (Input.GetKeyDown("p") && !ChatController.instance.textMode)
         {
             togglePause();
         }
+        /*
         else if (Input.GetKeyDown("i")) {
             Reload();
         }
+        */
     }
 }

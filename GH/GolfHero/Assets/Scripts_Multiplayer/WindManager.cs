@@ -11,9 +11,9 @@ public class WindManager : NetworkBehaviour {
     private const int MAX_SPEED = 12;
 
     // maximum variation per second on each coordinate
-    private const float X_VARIATION_PER_SECOND = 3.0f;
+    private const float X_VARIATION_PER_SECOND = 10.0f;
     private const float Y_VARIATION_PER_SECOND = 0f;
-    private const float Z_VARIATION_PER_SECOND = 3.0f;
+    private const float Z_VARIATION_PER_SECOND = 10.0f;
 
 
     [SyncVar]
