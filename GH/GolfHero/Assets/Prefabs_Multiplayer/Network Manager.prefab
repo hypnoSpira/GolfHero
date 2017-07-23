@@ -177,6 +177,8 @@ MonoBehaviour:
   m_PlayScene: 
   lobbySlots: []
   levels: []
+  cameraPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 0}
   level: 0
 --- !u!114 &114851824745992882
 MonoBehaviour:

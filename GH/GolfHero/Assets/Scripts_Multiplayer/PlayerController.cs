@@ -58,6 +58,9 @@ public class PlayerController : NetworkBehaviour {
             //    playerManager.Deactivate();
             //    timer -= 1;
             //}
+            if (ChatController.instance.textMode)
+                return;
+
             if (playerManager.activeState && !shotLock) {
                 color.r = power/maxPower;
 				color.g = power/maxPower;

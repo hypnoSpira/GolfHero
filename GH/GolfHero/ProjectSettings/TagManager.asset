@@ -12,6 +12,9 @@ TagManager:
   - Wind Arrow
   - Timer
   - Reference
+  - Chat Input
+  - Chat Button
+  - Chat Background
   layers:
   - Default
   - TransparentFX
