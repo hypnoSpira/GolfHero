@@ -39,6 +39,12 @@ EditorBuildSettings:
     path: Assets/_Scenes/MainGame_Level5.unity
     guid: ac6de166864f8f9418a816943d26a8dd
   - enabled: 1
+    path: Assets/_Scenes/Instructions.unity
+    guid: d8e151e3ad7c0b249b47ffb31f7dc12b
+  - enabled: 1
+    path: Assets/_Scenes/Credits.unity
+    guid: 8a146334826f1b54586423bb9bd4ac31
+  - enabled: 1
     path: Assets/_Scenes/Lobby_Custom.unity
     guid: 03140e2e893350a4183ba7a263e0983e
   - enabled: 1
