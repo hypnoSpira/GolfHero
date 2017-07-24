@@ -22,12 +22,17 @@ public class MainMenu_Controller : MonoBehaviour {
 
     public void LoadInstructions()
     {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("Instructions");
     }
 
     public void LoadCredits()
     {
-        SceneManager.LoadScene("Lobby");
+        SceneManager.LoadScene("Credits");
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ExitGame()
