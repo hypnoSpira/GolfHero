@@ -8,11 +8,14 @@ public class PMMController : MonoBehaviour
 {
     GameObject[] showOnPause;
 
+    private PlayerManager playerManager;
+
     protected bool paused;
 
     // Use this for initialization
     void Start()
     {
+        playerManager = gameObject.GetComponent<PlayerManager>();
         showOnPause = GameObject.FindGameObjectsWithTag("PMM_P");
         Resume();
     }
@@ -26,7 +29,8 @@ public class PMMController : MonoBehaviour
 
         
         Resume();
-        HitBallBehaviour.resetBall();
+        // HitBallBehaviour.resetBall();
+        playerManager.CmdResetBall();
     }
 
     // Pauses Time
@@ -55,7 +59,7 @@ public class PMMController : MonoBehaviour
         {
             o.SetActive(true);
         }
-        GameObject.Find("TogglePause").GetComponentInChildren<Text>().text = "Resume";
+        // GameObject.Find("TogglePause").GetComponentInChildren<Text>().text = "Resume";
     }
 
     private void hidePauseMenu()
@@ -64,7 +68,7 @@ public class PMMController : MonoBehaviour
         {
             o.SetActive(false);
         }
-        GameObject.Find("TogglePause").GetComponentInChildren<Text>().text = "Pause";
+        // GameObject.Find("TogglePause").GetComponentInChildren<Text>().text = "Pause";
     }
 
     public void togglePause()
