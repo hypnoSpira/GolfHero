@@ -8,14 +8,11 @@ public class PMMController : MonoBehaviour
 {
     GameObject[] showOnPause;
 
-    private PlayerManager playerManager;
-
     protected bool paused;
 
     // Use this for initialization
     void Start()
     {
-        playerManager = gameObject.GetComponent<PlayerManager>();
         showOnPause = GameObject.FindGameObjectsWithTag("PMM_P");
         Resume();
     }
@@ -29,8 +26,14 @@ public class PMMController : MonoBehaviour
 
         
         Resume();
-        // HitBallBehaviour.resetBall();
-        playerManager.CmdResetBall();
+        // GameObject.FindObjectOfType<PlayerManager>().CmdResetBall();
+
+        foreach(PlayerManager o in GameObject.FindObjectsOfType<PlayerManager>())
+        {
+            if(o.isLocalPlayer) {
+                o.CmdResetBall();
+            }
+        }
     }
 
     // Pauses Time
