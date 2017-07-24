@@ -126,7 +126,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   input: {fileID: 0}
   sendButton: {fileID: 0}
-  chatBackground: {fileID: 0}
   textMode: 0
 --- !u!1 &126954944
 GameObject:
@@ -414,7 +413,7 @@ AudioListener:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1595461875}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!92 &1595461877
 Behaviour:
   m_ObjectHideFlags: 0
