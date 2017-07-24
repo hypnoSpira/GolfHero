@@ -19,4 +19,24 @@ public class MainMenu_Controller : MonoBehaviour {
     {
         SceneManager.LoadScene("Lobby");
     }
+
+    public void LoadInstructions()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void LoadCredits()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+
+    public void ExitGame()
+    {
+        
+        #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            Application.Quit();
+        #endif
+    }
 }
