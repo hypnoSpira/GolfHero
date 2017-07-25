@@ -46,6 +46,7 @@ public class EndGame : MonoBehaviour {
 	private int counter;
 	private int bols;
 	private int idx;
+	private int prev;
 
 	// Use this for initialization
 	void Start () {
@@ -100,6 +101,7 @@ public class EndGame : MonoBehaviour {
 			tx.text = "Total Strokes: " + result;
 		}
 		minStroke = 9999;
+		prev = minStroke;
 		counter = 1;
 		bols = 0;
 		while (bols != numPlayers) {
@@ -110,10 +112,20 @@ public class EndGame : MonoBehaviour {
 				}
 			}
 			xt = place [idx].GetComponent<Text> ();
-			xt.text = "" + counter;
-			counter += 1;
-			placed [idx] = true;
-			bols += 1;
+			if (scores [idx] == prev) {
+				counter -= 1;
+				xt.text = "" + counter;
+				counter += 1;
+				placed [idx] = true;
+				bols += 1;
+				prev = minStroke;
+			} else {
+				xt.text = "" + counter;
+				counter += 1;
+				placed [idx] = true;
+				bols += 1;
+				prev = minStroke;
+			}
 		}
 
 		Debug.Log (numPlayers);
@@ -145,7 +157,7 @@ public class EndGame : MonoBehaviour {
 				rt.sizeDelta += new Vector2 (40, 0);
 			} else if (txt.color.a < 255) {
 				Color tem = txt.color;
-				tem.a += 0.01f;
+				tem.a += 0.08f;
 				txt.color = tem;
 			}
 		}
