@@ -76,27 +76,18 @@ public class PlayerController : NetworkBehaviour {
                     {
                         direction = Camera.main.transform.forward;
                         canShoot = true;
-                        BallCamController.Disabled(false);
                     }
                     else if (canShoot && Input.GetKeyUp("mouse 0"))
                     {
                         canShoot = false;
-                        BallCamController.Disabled(false);
-                        // shot++;
-                        // calcWind = true;
-                        /*Possibly account for ball being on slope */
-                        //Vector3 planeNorm = rb.getPlane();
-                        Vector3 planeNorm = new Vector3(0, 1, 0); //Use the norm of the x,z plane
+                        Vector3 planeNorm = new Vector3(0, 1, 0);
                         direction = Vector3.ProjectOnPlane(direction, planeNorm).normalized;
-                        // Debug.Log(force);
-                        // rb.AddForce(force * power * power + windDir * windSpd[2] * windSpd[2]);
-                        // power = 1f;
-                        playerManager.CmdShootBall(direction, power + 9.5f);
+                        playerManager.CmdShootBall(direction, power);
+                        power = 1f;
                     }
                     else if (canShoot && Input.GetKeyUp("mouse 1"))
                     {
                         canShoot = false;
-                        BallCamController.Disabled(false);
                         power = 1f;
                     }
                 }
