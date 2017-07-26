@@ -65,8 +65,8 @@ public class PlayerController : NetworkBehaviour {
 
             if (playerManager.activeState && !shotLock) {
                 color.r = power/maxPower;
-				color.g = power/maxPower;
-				color.b = power/maxPower;
+				//color.g = power/maxPower;
+				//color.b = power/maxPower;
                 //arrowRend.material.color = color;
                 cameraController.SetArrowIntensity(color);
 
@@ -82,7 +82,19 @@ public class PlayerController : NetworkBehaviour {
                         canShoot = false;
                         Vector3 planeNorm = new Vector3(0, 1, 0);
                         direction = Vector3.ProjectOnPlane(direction, planeNorm).normalized;
-                        playerManager.CmdShootBall(direction, power);
+                        playerManager.CmdShootBall(direction, power + 9.5f);
+                        if (power > 30)
+                        {
+                            source.PlayOneShot(hiHit);
+                        }
+                        else if (power > 20)
+                        {
+                            source.PlayOneShot(midHit);
+                        }
+                        else
+                        {
+                            source.PlayOneShot(lowHit);
+                        }
                         power = 1f;
                     }
                     else if (canShoot && Input.GetKeyUp("mouse 1"))
