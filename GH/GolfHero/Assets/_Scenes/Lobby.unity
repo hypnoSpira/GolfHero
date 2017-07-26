@@ -340,7 +340,7 @@ Prefab:
     - target: {fileID: 114499235285503836, guid: bc2900736af4263419774044e61a25b7,
         type: 2}
       propertyPath: levels.Array.data[1]
-      value: MainGame_Level5
+      value: EndGame
       objectReference: {fileID: 0}
     - target: {fileID: 114499235285503836, guid: bc2900736af4263419774044e61a25b7,
         type: 2}
