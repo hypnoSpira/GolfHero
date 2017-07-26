@@ -10,5 +10,5 @@
     2. Discord (pinned messages, different text channels, voice chat)
     3. Standards and conventions???? (what?)
    - Software Architecture
-    1. Technologies (Unity and C#)
-    2. How was the software built?
+      1. Technologies (Unity and C#)
+      2. How was the software built?
