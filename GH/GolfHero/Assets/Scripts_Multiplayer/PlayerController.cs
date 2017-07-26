@@ -79,7 +79,7 @@ public class PlayerController : NetworkBehaviour {
                 }
                 if (canShoot && Input.GetKeyUp("mouse 0")) {
                     canShoot = false;
-                    playerManager.CmdShootBall(direction, power);
+                    playerManager.CmdShootBall(direction, power + 9.5f);
 					if (power > 30) {
 						source.PlayOneShot (hiHit);
 					} else if (power > 20) {

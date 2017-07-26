@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 19465217}
   - component: {fileID: 19465216}
   - component: {fileID: 19465215}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 147855193}
   - component: {fileID: 147855192}
   - component: {fileID: 147855191}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Front
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2133209568}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: EndIsland
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -621,7 +621,7 @@ GameObject:
   - component: {fileID: 221023310}
   - component: {fileID: 221023309}
   - component: {fileID: 221023308}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2587,7 +2587,7 @@ GameObject:
   - component: {fileID: 759293621}
   - component: {fileID: 759293620}
   - component: {fileID: 759293619}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4073,7 +4073,7 @@ GameObject:
   - component: {fileID: 1474857787}
   - component: {fileID: 1474857786}
   - component: {fileID: 1474857785}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5192,7 +5192,7 @@ GameObject:
   - component: {fileID: 1793543071}
   - component: {fileID: 1793543070}
   - component: {fileID: 1793543069}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
