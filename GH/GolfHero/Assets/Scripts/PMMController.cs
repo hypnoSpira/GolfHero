@@ -38,6 +38,19 @@ public class PMMController : MonoBehaviour
         }
     }
 
+    public void SetCrtlMode(bool mode)
+    {
+        // ignore bool & calculate mode # as needed (only 2 for now)
+        Resume();
+        foreach (PlayerController o in GameObject.FindObjectsOfType<PlayerController>())
+        {
+            if (o.isLocalPlayer)
+            {   
+                o.shotMode = o.shotMode == 0? 1 : 0;
+            }
+        }
+    }
+
     // Pauses Time
     public void Pause()
     {
