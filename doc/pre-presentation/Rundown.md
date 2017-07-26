@@ -5,10 +5,11 @@
       1. 3D graphics
       2. In-game text chat
       3. Simple easy to setup multiplayer
-    - Talk about process
-      1. Talk about GitHub
-      2. Discord (pinned messages, different text channels, voice chat)
-      3. Standards and conventions???? (what?)
-   - Software Architecture
-      1. Technologies (Unity and C#)
-      2. How was the software built?
+3.Talk about process
+    - Talk about GitHub
+    - Discord (pinned messages, different text channels, voice chat)
+    - Standards and conventions???? (what?)
+4. Software Architecture
+    - Technologies (Unity and C#)
+    - How was the software built?
+      
