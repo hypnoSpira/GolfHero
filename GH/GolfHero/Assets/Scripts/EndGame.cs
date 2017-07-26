@@ -99,11 +99,11 @@ public class EndGame : MonoBehaviour {
 			scores [System.Array.IndexOf (balls, i)] = result;
 			strokes[System.Array.IndexOf(balls, i)].GetComponent<Text>().text = "Total Strokes: " + result;
 		}
-		minStroke = 9999;
-		prev = minStroke;
+		prev = 9999;
 		counter = 1;
 		bols = 0;
 		while (bols != numPlayers) {
+			minStroke = 9999;
 			foreach (GameObject i in balls) {
 				if (placed [System.Array.IndexOf (balls, i)] == false && scores [System.Array.IndexOf (balls, i)] <= minStroke) {
 					minStroke = scores [System.Array.IndexOf (balls, i)];
