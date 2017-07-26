@@ -5,13 +5,13 @@
       1. 3D graphics
       2. In-game text chat
       3. Simple easy to setup multiplayer
-      
-3. Talk about process
+3. Pre-Demo Preamble (Instructions, volunteers, etc.)
+4. Do the Live Demo
+5. Talk about process
     - Talk about GitHub
     - Discord (pinned messages, different text channels, voice chat)
     - Standards and conventions???? (what?)
-4. Do the Live Demo
-5. Software Architecture
+6. Software Architecture
     - Technologies (Unity and C#)
     - How was the software built?
     - Technical Challenges
