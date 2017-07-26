@@ -7,10 +7,16 @@
       3. Simple easy to setup multiplayer
       
 3.Talk about process
+
     - Talk about GitHub
+    
     - Discord (pinned messages, different text channels, voice chat)
+    
     - Standards and conventions???? (what?)
+    
 4. Software Architecture
+
     - Technologies (Unity and C#)
+    
     - How was the software built?
       
