@@ -5139,7 +5139,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1816559433}
         m_MethodName: SetZoomSensitivity
         m_Mode: 0
         m_Arguments:
@@ -5235,7 +5235,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1816559433}
         m_MethodName: SetMovSensitivity
         m_Mode: 0
         m_Arguments:

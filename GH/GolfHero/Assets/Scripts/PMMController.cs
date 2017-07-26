@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class PMMController : MonoBehaviour
 {
     GameObject[] showOnPause;
+    CameraController cameraController;
 
     protected bool paused;
 
     // Use this for initialization
     void Start()
     {
+        cameraController = Camera.main.GetComponent<CameraController>();
         showOnPause = GameObject.FindGameObjectsWithTag("PMM_P");
         Resume();
     }
@@ -84,6 +86,17 @@ public class PMMController : MonoBehaviour
         {
             Resume();
         }
+    }
+
+    public void SetMovSensitivity(float sensitivity)
+    {
+        cameraController.sensitivityX = sensitivity;
+        cameraController.sensitivityY = sensitivity;
+    }
+
+    public void SetZoomSensitivity(float zoom)
+    {
+        cameraController.sensitivityZoom = zoom;
     }
 
     // Update is called once per frame
