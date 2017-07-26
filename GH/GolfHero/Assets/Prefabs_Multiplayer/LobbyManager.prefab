@@ -149,6 +149,7 @@ MonoBehaviour:
   m_LobbyScene: Lobby
   m_PlayScene: MainGame_Lobby
   lobbySlots: []
-  transitionLevel: Game_Transition
   levels: []
-  defaultLayer: 0
+  cameraPrefab: {fileID: 0}
+  arrowPrefab: {fileID: 0}
+  level: 0

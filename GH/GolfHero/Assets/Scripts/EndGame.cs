@@ -97,18 +97,17 @@ public class EndGame : MonoBehaviour {
 		foreach (GameObject i in balls) {
 			result = i.GetComponent<PlayerManager> ().strokes;
 			scores [System.Array.IndexOf (balls, i)] = result;
-			tx = strokes [System.Array.IndexOf (balls, i)].GetComponent<Text> ();
-			tx.text = "Total Strokes: " + result;
+			strokes[System.Array.IndexOf(balls, i)].GetComponent<Text>().text = "Total Strokes: " + result;
 		}
 		minStroke = 9999;
 		prev = minStroke;
 		counter = 1;
 		bols = 0;
 		while (bols != numPlayers) {
-			foreach (int i in scores) {
-				if (placed [System.Array.IndexOf (scores, i)] == false && i < minStroke) {
-					minStroke = i;
-					idx = System.Array.IndexOf (scores, i);
+			foreach (GameObject i in balls) {
+				if (placed [System.Array.IndexOf (balls, i)] == false && scores [System.Array.IndexOf (balls, i)] <= minStroke) {
+					minStroke = scores [System.Array.IndexOf (balls, i)];
+					idx = System.Array.IndexOf (balls, i);
 				}
 			}
 			xt = place [idx].GetComponent<Text> ();
@@ -130,7 +129,7 @@ public class EndGame : MonoBehaviour {
 
 		Debug.Log (numPlayers);
 		foreach (GameObject i in bars) {
-			Debug.Log (i);
+			Debug.Log (strokes [System.Array.IndexOf (bars, i)]);
 			rt = i.GetComponent<RectTransform> ();
 			rtT = players [System.Array.IndexOf (bars, i)].GetComponent<RectTransform> ();
 			rtP = place [System.Array.IndexOf (bars, i)].GetComponent<RectTransform> ();
