@@ -10,8 +10,9 @@
     - Talk about GitHub
     - Discord (pinned messages, different text channels, voice chat)
     - Standards and conventions???? (what?)
-    
- 4. Software Architecture
+4. Do the Live Demo
+5. Software Architecture
     - Technologies (Unity and C#)
     - How was the software built?
+    - Technical Challenges
       
