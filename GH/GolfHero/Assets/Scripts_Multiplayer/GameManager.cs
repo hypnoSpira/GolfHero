@@ -7,6 +7,7 @@ public class GameManager : NetworkLobbyManager {
 
     public string[] levels;
 
+    public GameObject windManagerPrefab;
     public GameObject cameraPrefab;
     public GameObject arrowPrefab;
 	//public GameObject timerPrefab;
@@ -84,6 +85,8 @@ public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, G
     {
         base.OnServerSceneChanged(sceneName);
 
+        level = 0;
+
         for (int i = 0; i < levels.Length; i++)
         {
             if (sceneName == levels[i])
@@ -93,8 +96,14 @@ public override bool OnLobbyServerSceneLoadedForPlayer(GameObject lobbyPlayer, G
             }
         }
 
+        if (level == 0)
+            return;
+
         // refresh spawn points
         BallsManager.instance.UpdateSpawnPoints();
+
+        var windManager = (GameObject)Instantiate(windManagerPrefab, Vector3.zero, Quaternion.identity);
+        NetworkServer.Spawn(windManager);
 
         // RefreshPlayersList(true);
 

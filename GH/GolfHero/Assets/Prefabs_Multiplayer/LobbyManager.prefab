@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4323333772635214}
   - component: {fileID: 114499235285503836}
   - component: {fileID: 114052934263220064}
+  - component: {fileID: 114736771079160364}
   m_Layer: 0
   m_Name: LobbyManager
   m_TagString: Untagged
@@ -83,6 +84,7 @@ MonoBehaviour:
   m_OnlineScene: 
   m_SpawnPrefabs:
   - {fileID: 1955517457734162, guid: 8206b6bd71f83b241bc34647cccf13d7, type: 2}
+  - {fileID: 1859164078567988, guid: 2ba590f43accf414c8fee4692c4d3686, type: 2}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -147,9 +149,32 @@ MonoBehaviour:
   m_GamePlayerPrefab: {fileID: 1115051040179070, guid: 06b0dc979d799eb4eaa16b69e2270fd8,
     type: 2}
   m_LobbyScene: Lobby
-  m_PlayScene: MainGame_Lobby
+  m_PlayScene: MainGame_Level1
   lobbySlots: []
-  levels: []
-  cameraPrefab: {fileID: 0}
-  arrowPrefab: {fileID: 0}
+  levels:
+  - MainGame_Level1
+  - MainGame_Level5
+  - MainGame_Level3
+  - MainGame_Level2
+  - EndGame
+  windManagerPrefab: {fileID: 1859164078567988, guid: 2ba590f43accf414c8fee4692c4d3686,
+    type: 2}
+  cameraPrefab: {fileID: 1574613778266102, guid: a75f7697a30c333408118a2121ef26e9,
+    type: 2}
+  arrowPrefab: {fileID: 1113964352497720, guid: 438c9d359bb5da140a4a8127643689e4,
+    type: 2}
   level: 0
+--- !u!114 &114736771079160364
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1549123182453174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd0a490fbbda4e9598eed1343ef79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 0}
+  sendButton: {fileID: 0}
+  textMode: 0
